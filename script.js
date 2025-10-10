@@ -1,60 +1,85 @@
-// ======= CONFIG =======
-const PASSWORD = "091008";
-const USERNAME = "Secret Admirer";
-const DIARY_URL = "https://raw.githubusercontent.com/ruzrun/Damia-Diary/main/diary.json";
-// Example: "https://raw.githubusercontent.com/warun123/DamiaDiary/main/diary.json"
+document.addEventListener("DOMContentLoaded", () => {
+  const correctPassword = "091008";
 
-// ======= LOGIN FUNCTION =======
-function login() {
-  const input = document.getElementById("passwordInput").value.trim();
-  if (input === PASSWORD) {
-    document.getElementById("loginSection").style.display = "none";
-    document.getElementById("diarySection").style.display = "block";
-    loadDiaryList(); // call async function (no await here)
-  } else {
-    alert("Wrong password 😅");
+  // Pages
+  const loginPage = document.getElementById("loginPage");
+  const listPage = document.getElementById("listPage");
+  const viewPage = document.getElementById("viewPage");
+
+  // Login elements
+  const passwordInput = document.getElementById("passwordInput");
+  const loginBtn = document.getElementById("loginBtn");
+  const loginError = document.getElementById("loginError");
+
+  // Diary elements
+  const diaryList = document.getElementById("diaryList");
+  const diaryTitle = document.getElementById("diaryTitle");
+  const diaryContent = document.getElementById("diaryContent");
+  const logoutBtn = document.getElementById("logoutBtn");
+  const backBtn = document.getElementById("backBtn");
+
+  let diaries = [];
+
+  // ✅ Handle login click (works across all devices)
+  const handleLogin = () => {
+    const password = passwordInput.value.trim();
+    if (password === correctPassword) {
+      loginPage.classList.add("hidden");
+      listPage.classList.remove("hidden");
+      loadDiaries();
+    } else {
+      loginError.textContent = "Incorrect password. Try again.";
+    }
+  };
+
+  loginBtn.addEventListener("click", handleLogin);
+  loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
+
+  // ✅ Load diary list from JSON
+  function loadDiaries() {
+    fetch("diary.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load diary.json");
+        return res.json();
+      })
+      .then((data) => {
+        diaries = data.diaries;
+        diaryList.innerHTML = "";
+        diaries.forEach((entry, index) => {
+          const li = document.createElement("li");
+          li.textContent = entry.title;
+          li.addEventListener("click", () => openDiary(index));
+          diaryList.appendChild(li);
+        });
+      })
+      .catch((err) => {
+        diaryList.innerHTML = <li style="color:red;">Error loading diaries 😢</li>;
+        console.error(err);
+      });
   }
-}
 
-// ======= LOGOUT =======
-function logout() {
-  document.getElementById("loginSection").style.display = "block";
-  document.getElementById("diarySection").style.display = "none";
-  document.getElementById("diaryList").innerHTML = "";
-  document.getElementById("diaryContent").innerHTML = "";
-  document.getElementById("passwordInput").value = "";
-}
-
-// ======= LOAD DIARY LIST FROM JSON =======
-async function loadDiaryList() {
-  try {
-    const response = await fetch(DIARY_URL);
-    if (!response.ok) throw new Error("Failed to load diary.json");
-    const diaries = await response.json();
-
-    const listContainer = document.getElementById("diaryList");
-    listContainer.innerHTML = "";
-
-    diaries.forEach((entry) => {
-      const item = document.createElement("button");
-      item.className = "diary-item";
-      item.textContent = entry.title;
-      item.onclick = () => showDiary(entry);
-      listContainer.appendChild(item);
-    });
-
-  } catch (err) {
-    console.error(err);
-    alert("Failed to load diary. Check your repo name or file link.");
+  // ✅ View diary details
+  function openDiary(index) {
+    const entry = diaries[index];
+    if (!entry) return;
+    listPage.classList.add("hidden");
+    viewPage.classList.remove("hidden");
+    diaryTitle.textContent = entry.title;
+    diaryContent.textContent = entry.content;
   }
-}
 
-// ======= SHOW DIARY CONTENT =======
-function showDiary(entry) {
-  const contentBox = document.getElementById("diaryContent");
-  contentBox.innerHTML = `
-    <h2>${entry.title}</h2>
-    <p class="date">${entry.date}</p>
-    <p class="text">${entry.content}</p>
-  `;
-}
+  // ✅ Back to list
+  backBtn.addEventListener("click", () => {
+    viewPage.classList.add("hidden");
+    listPage.classList.remove("hidden");
+  });
+
+  // ✅ Logout
+  logoutBtn.addEventListener("click", () => {
+    listPage.classList.add("hidden");
+    viewPage.classList.add("hidden");
+    loginPage.classList.remove("hidden");
+    passwordInput.value = "";
+    loginError.textContent = "";
+  });
+});
