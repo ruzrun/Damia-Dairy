@@ -18,7 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const backBtn = document.getElementById("backBtn");
 
-  let diaries = [];
+  let diaries = [1];
+
+  // Prepare audio 
+  const audio = new Audio("audio/mySong.mp3");
+  audio.loop = true; // audio akan repeat
+
 
   // ✅ Handle login click (works across all devices)
   const handleLogin = () => {
