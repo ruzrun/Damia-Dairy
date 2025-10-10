@@ -1,7 +1,7 @@
 // ========== CONFIG ==========
 const PASSWORD = "091008"; // your secret number password
 const USERNAME = "Secret Admirer"; // optional use later (for design maybe)
-const DIARY_URL = "https://raw.githubusercontent.com/<your-username>/<YourRepoName>/main/diary.json";
+const DIARY_URL = "https://raw.githubusercontent.com/ruzrun/Damia-Dairy/main/diary.json";
 // Example: "https://raw.githubusercontent.com/warun123/DamiaDiary/main/diary.json"
 
 // ========== LOGIN FUNCTION ==========
