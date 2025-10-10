@@ -9,6 +9,10 @@ const diaryList = document.getElementById("diaryList");
 const diaryContent = document.getElementById("diaryContent");
 const authorName = document.getElementById("authorName");
 
+const response = await fetch("https://raw.ruzrun.com/Damia-Dairy/main/diary.json");
+console.log("Fetching diary...");
+console.log("Response:", response);
+
 // --- Login Function ---
 function login() {
   const inputPassword = document.getElementById("passwordInput").value.trim();
