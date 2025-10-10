@@ -1,75 +1,73 @@
-// ====== Password Setup ======
+// --- Password and Secrets ---
 const CORRECT_PASSWORD = "091008";
+const AUTHOR_NAME = "Secret Admirer";
 
-// ====== Page Elements ======
-const loginPage = document.getElementById("loginPage");
-const listPage = document.getElementById("listPage");
-const viewPage = document.getElementById("viewPage");
-
-const loginBtn = document.getElementById("loginBtn");
-const passwordInput = document.getElementById("passwordInput");
-const loginError = document.getElementById("loginError");
-const logoutBtn = document.getElementById("logoutBtn");
-const backBtn = document.getElementById("backBtn");
-
+// --- Elements ---
+const loginSection = document.getElementById("loginSection");
+const diarySection = document.getElementById("diarySection");
 const diaryList = document.getElementById("diaryList");
-const diaryTitle = document.getElementById("diaryTitle");
 const diaryContent = document.getElementById("diaryContent");
+const authorName = document.getElementById("authorName");
 
-let diaries = []; // will load from diary.json
+// --- Login Function ---
+function login() {
+  const inputPassword = document.getElementById("passwordInput").value.trim();
 
-// ====== Load Diary Data from JSON ======
-async function loadDiaries() {
-  try {
-    const response = await fetch("diary.json");
-    if (!response.ok) throw new Error("Failed to load diary data");
-    diaries = await response.json();
-  } catch (error) {
-    console.error("Error loading diaries:", error);
+  if (inputPassword === CORRECT_PASSWORD) {
+    loginSection.style.display = "none";
+    diarySection.style.display = "block";
+    authorName.textContent = AUTHOR_NAME;
+    loadDiary();
+  } else {
+    alert("Wrong password. Try again.");
   }
 }
 
-// ====== Handle Login ======
-loginBtn.addEventListener("click", async () => {
-  if (passwordInput.value === CORRECT_PASSWORD) {
-    await loadDiaries(); // load diaries only after correct password
-    loginPage.classList.add("hidden");
-    listPage.classList.remove("hidden");
-    showDiaryList();
-  } else {
-    loginError.textContent = "Wrong password. Try again.";
-  }
-});
-
-// ====== Show Diary List ======
-function showDiaryList() {
+// --- Logout Function ---
+function logout() {
+  diarySection.style.display = "none";
   diaryList.innerHTML = "";
-  diaries.forEach((diary, index) => {
-    const li = document.createElement("li");
-    li.textContent = diary.title;
-    li.addEventListener("click", () => openDiary(index));
-    diaryList.appendChild(li);
+  diaryContent.innerHTML = "";
+  loginSection.style.display = "block";
+}
+
+// --- Load Diary JSON ---
+async function loadDiary() {
+  try {
+    const response = await fetch("diary.json");
+    if (!response.ok) throw new Error("Failed to load diary");
+    const diaries = await response.json();
+    displayDiaryList(diaries);
+  } catch (err) {
+    console.error("Error loading diary:", err);
+    diaryList.innerHTML = <p style="color:red;">Failed to load diary entries.</p>;
+  }
+}
+
+// --- Display Diary List ---
+function displayDiaryList(diaries) {
+  diaryList.innerHTML = ""; // Clear old content
+
+  diaries.forEach((entry, index) => {
+    const listItem = document.createElement("button");
+    listItem.textContent = entry.title;
+    listItem.className = "diary-item";
+    listItem.onclick = () => showDiary(entry);
+    diaryList.appendChild(listItem);
   });
 }
 
-// ====== Open Diary ======
-function openDiary(index) {
-  listPage.classList.add("hidden");
-  viewPage.classList.remove("hidden");
-
-  diaryTitle.textContent = diaries[index].title;
-  diaryContent.textContent = diaries[index].content;
+// --- Show Selected Diary ---
+function showDiary(entry) {
+  diaryContent.innerHTML = `
+    <h2>${entry.title}</h2>
+    <p><em>${entry.date}</em></p>
+    <p>${entry.content}</p>
+    <button onclick="closeDiary()">Back to list</button>
+  `;
 }
 
-// ====== Back to Diary List ======
-backBtn.addEventListener("click", () => {
-  viewPage.classList.add("hidden");
-  listPage.classList.remove("hidden");
-});
-
-// ====== Log Out ======
-logoutBtn.addEventListener("click", () => {
-  listPage.classList.add("hidden");
-  loginPage.classList.remove("hidden");
-  passwordInput.value = "";
-});
+// --- Back to list ---
+function closeDiary() {
+  diaryContent.innerHTML = "";
+}
