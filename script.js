@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const backBtn = document.getElementById("backBtn");
 
-  let diaries = [1];
+  let diaries = [];
 
   // Prepare audio 
   const audio = new Audio("audio/mySong.mp3");
