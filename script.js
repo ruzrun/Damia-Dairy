@@ -16,15 +16,6 @@ function login() {
   }
 }
 
-// ========== LOGOUT ==========
-function logout() {
-  document.getElementById("loginSection").style.display = "block";
-  document.getElementById("diarySection").style.display = "none";
-  document.getElementById("diaryList").innerHTML = "";
-  document.getElementById("diaryContent").innerHTML = "";
-  document.getElementById("passwordInput").value = "";
-}
-
 // ========== LOAD DIARY LIST FROM JSON ==========
 async function loadDiaryList() {
   try {
@@ -57,4 +48,13 @@ function showDiary(entry) {
     <p class="date">${entry.date}</p>
     <p class="text">${entry.content}</p>
   `;
+}
+
+// ========== LOGOUT ==========
+function logout() {
+  document.getElementById("loginSection").style.display = "block";
+  document.getElementById("diarySection").style.display = "none";
+  document.getElementById("diaryList").innerHTML = "";
+  document.getElementById("diaryContent").innerHTML = "";
+  document.getElementById("passwordInput").value = "";
 }
