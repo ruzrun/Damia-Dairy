@@ -1,77 +1,60 @@
-// --- Password and Secrets ---
-const CORRECT_PASSWORD = "091008";
-const AUTHOR_NAME = "Secret Admirer";
+// ========== CONFIG ==========
+const PASSWORD = "091008"; // your secret number password
+const USERNAME = "Secret Admirer"; // optional use later (for design maybe)
+const DIARY_URL = "https://raw.githubusercontent.com/<your-username>/<YourRepoName>/main/diary.json";
+// Example: "https://raw.githubusercontent.com/warun123/DamiaDiary/main/diary.json"
 
-// --- Elements ---
-const loginSection = document.getElementById("loginSection");
-const diarySection = document.getElementById("diarySection");
-const diaryList = document.getElementById("diaryList");
-const diaryContent = document.getElementById("diaryContent");
-const authorName = document.getElementById("authorName");
-
-const response = await fetch("https://raw.ruzrun.com/Damia-Dairy/main/diary.json");
-console.log("Fetching diary...");
-console.log("Response:", response);
-
-// --- Login Function ---
+// ========== LOGIN FUNCTION ==========
 function login() {
-  const inputPassword = document.getElementById("passwordInput").value.trim();
-
-  if (inputPassword === CORRECT_PASSWORD) {
-    loginSection.style.display = "none";
-    diarySection.style.display = "block";
-    authorName.textContent = AUTHOR_NAME;
-    loadDiary();
+  const input = document.getElementById("passwordInput").value.trim();
+  if (input === PASSWORD) {
+    document.getElementById("loginSection").style.display = "none";
+    document.getElementById("diarySection").style.display = "block";
+    loadDiaryList(); // Load diary after login success
   } else {
-    alert("Wrong password. Try again.");
+    alert("Wrong password 😅");
   }
 }
 
-// --- Logout Function ---
+// ========== LOGOUT ==========
 function logout() {
-  diarySection.style.display = "none";
-  diaryList.innerHTML = "";
-  diaryContent.innerHTML = "";
-  loginSection.style.display = "block";
+  document.getElementById("loginSection").style.display = "block";
+  document.getElementById("diarySection").style.display = "none";
+  document.getElementById("diaryList").innerHTML = "";
+  document.getElementById("diaryContent").innerHTML = "";
+  document.getElementById("passwordInput").value = "";
 }
 
-// --- Load Diary JSON ---
-async function loadDiary() {
+// ========== LOAD DIARY LIST FROM JSON ==========
+async function loadDiaryList() {
   try {
-    const response = await fetch("diary.json");
-    if (!response.ok) throw new Error("Failed to load diary");
+    const response = await fetch(DIARY_URL);
+    if (!response.ok) throw new Error("Failed to load diary.json");
     const diaries = await response.json();
-    displayDiaryList(diaries);
+
+    const listContainer = document.getElementById("diaryList");
+    listContainer.innerHTML = "";
+
+    diaries.forEach((entry, index) => {
+      const item = document.createElement("button");
+      item.className = "diary-item";
+      item.textContent = entry.title;
+      item.onclick = () => showDiary(entry);
+      listContainer.appendChild(item);
+    });
+
   } catch (err) {
-    console.error("Error loading diary:", err);
-    diaryList.innerHTML = <p style="color:red;">Failed to load diary entries.</p>;
+    console.error(err);
+    alert("Failed to load diary. Check your repo name or file link.");
   }
 }
 
-// --- Display Diary List ---
-function displayDiaryList(diaries) {
-  diaryList.innerHTML = ""; // Clear old content
-
-  diaries.forEach((entry, index) => {
-    const listItem = document.createElement("button");
-    listItem.textContent = entry.title;
-    listItem.className = "diary-item";
-    listItem.onclick = () => showDiary(entry);
-    diaryList.appendChild(listItem);
-  });
-}
-
-// --- Show Selected Diary ---
+// ========== SHOW DIARY CONTENT ==========
 function showDiary(entry) {
-  diaryContent.innerHTML = `
+  const contentBox = document.getElementById("diaryContent");
+  contentBox.innerHTML = `
     <h2>${entry.title}</h2>
-    <p><em>${entry.date}</em></p>
-    <p>${entry.content}</p>
-    <button onclick="closeDiary()">Back to list</button>
+    <p class="date">${entry.date}</p>
+    <p class="text">${entry.content}</p>
   `;
-}
-
-// --- Back to list ---
-function closeDiary() {
-  diaryContent.innerHTML = "";
 }
