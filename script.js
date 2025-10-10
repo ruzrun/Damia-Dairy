@@ -12,7 +12,7 @@ function login() {
     document.getElementById("diarySection").style.display = "block";
     loadDiaryList(); // call async function (no await here)
   } else {
-    alert("Wrong password 😅");
+    alert("Wrong password");
   }
 }
 
