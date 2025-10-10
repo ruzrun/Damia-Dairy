@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch((err) => {
-        diaryList.innerHTML = <li style="color:red;">Error loading diaries 😢</li>;
+        diaryList.innerHTML = <li style="color:red;">Error loading diaries 😢/li>;
         console.error(err);
       });
   }
