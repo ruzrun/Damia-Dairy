@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let diaries = [];
 
   // Audio setup (optional)
-  const audio = new Audio("audio/mySong.mp3");
+  const audio = new Audio("audio/audio.mp3");
   audio.loop = true;
   audio.volume = 0;
 
