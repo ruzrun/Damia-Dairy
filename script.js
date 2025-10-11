@@ -1,15 +1,18 @@
 document.addEventListener("DOMContentLoaded", () => {
   const correctPassword = "091008";
-  let entered = "";
 
   // Pages
   const loginPage = document.getElementById("loginPage");
   const listPage = document.getElementById("listPage");
   const viewPage = document.getElementById("viewPage");
 
-  const passwordDisplay = document.getElementById("passwordDisplay");
+  // Login elements
+  const passwordInput = document.getElementById("passwordInput");
+  const togglePasswordBtn = document.getElementById("togglePasswordBtn");
+  const loginBtn = document.getElementById("loginBtn");
   const loginError = document.getElementById("loginError");
 
+  // Diary elements
   const diaryList = document.getElementById("diaryList");
   const diaryTitle = document.getElementById("diaryTitle");
   const diaryContent = document.getElementById("diaryContent");
@@ -18,85 +21,61 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let diaries = [];
 
-  // 🎵 Audio setup
-  const audio = new Audio("audio/audio.mp3"); // Put your file in /audio/mySong.mp3
-  audio.loop = true;
-  audio.volume = 0;
+  // Prepare audio
+  const audio = new Audio("audio/audio.mp3");
+  audio.loop = true; // audio akan repeat
 
-  // Fade-in effect for music
-  function fadeInAudio() {
-    let fadeInterval = setInterval(() => {
-      if (audio.volume < 1) {
-        audio.volume = Math.min(1, audio.volume + 0.05);
-      } else {
-        clearInterval(fadeInterval);
-      }
-    }, 200);
-  }
-
-  // Update password dots
-  function updateDisplay() {
-    passwordDisplay.textContent = entered
-      .split("")
-      .map(() => "•")
-      .join(" ") + "•".repeat(6 - entered.length);
-  }
-
-  // Handle keypad presses
-  document.querySelectorAll(".key").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const value = btn.textContent.trim();
-
-      if (btn.classList.contains("clear")) {
-        entered = "";
-        loginError.textContent = "";
-      } else if (btn.classList.contains("enter")) {
-        checkPassword();
-      } else if (entered.length < 6) {
-        entered += value;
-      }
-      updateDisplay();
-    });
+  // Toggle password visibility
+  togglePasswordBtn.addEventListener("click", () => {
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      togglePasswordBtn.textContent = "Hide";
+    } else {
+      passwordInput.type = "password";
+      togglePasswordBtn.textContent = "Show";
+    }
   });
 
-  // ✅ Check password and play audio on success
-  function checkPassword() {
-    if (entered === correctPassword) {
+  // ✅ Handle login click (works across all devices)
+  const handleLogin = () => {
+    const password = passwordInput.value.trim();
+    if (password === correctPassword) {
       loginPage.classList.add("hidden");
       listPage.classList.remove("hidden");
       loadDiaries();
-
-      // Start playing the music
-      audio.currentTime = 0;
-      audio.play()
-        .then(() => fadeInAudio())
-        .catch((err) => console.error("Autoplay blocked:", err));
+      audio.play(); // Play audio after successful login
     } else {
-      loginError.textContent = "Incorrect password ❌";
-      entered = "";
-      updateDisplay();
+      loginError.textContent = "Incorrect password. Try again.";
     }
-  }
+  };
 
-  // Load diary entries
+  loginBtn.addEventListener("click", handleLogin);
+  loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
+
+  // ✅ Load diary list from JSON
   function loadDiaries() {
     fetch("diary.json")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to load diary.json");
+        return res.json();
+      })
       .then((data) => {
-        diaries = Array.isArray(data) ? data : data.diaries;
+        diaries = data.diaries;
         diaryList.innerHTML = "";
-        diaries.forEach((entry, i) => {
+        diaries.forEach((entry, index) => {
           const li = document.createElement("li");
           li.textContent = entry.title;
-          li.addEventListener("click", () => openDiary(i));
+          li.addEventListener("click", () => openDiary(index));
           diaryList.appendChild(li);
         });
       })
-      .catch(() => {
-        diaryList.innerHTML = "<li> Unable to load diary </li>";
+      .catch((err) => {
+        diaryList.innerHTML = '<li style="color:red;">Error loading diaries 😢</li>';
+        console.error(err);
       });
   }
 
+  // ✅ View diary details
   function openDiary(index) {
     const entry = diaries[index];
     if (!entry) return;
@@ -106,18 +85,20 @@ document.addEventListener("DOMContentLoaded", () => {
     diaryContent.textContent = entry.content;
   }
 
+  // ✅ Back to list
   backBtn.addEventListener("click", () => {
     viewPage.classList.add("hidden");
     listPage.classList.remove("hidden");
   });
 
+  // ✅ Logout
   logoutBtn.addEventListener("click", () => {
     listPage.classList.add("hidden");
+    viewPage.classList.add("hidden");
     loginPage.classList.remove("hidden");
-    entered = "";
-    updateDisplay();
-    audio.pause();
+    passwordInput.value = "";
+    loginError.textContent = "";
+    audio.pause(); // Pause audio on logout
+    audio.currentTime = 0; // Reset audio
   });
-
-  updateDisplay();
 });
