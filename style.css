@@ -13,7 +13,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(-45deg, #ff6b6b, #fddb92, #4facfe, #43e97b);
+  background: linear-gradient(-45deg, #add8e6, #ffb6c1);
   background-size: 400% 400%;
   animation: gradientShift 8s ease infinite;
   color: white;
