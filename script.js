@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Login elements
   const passwordInput = document.getElementById("passwordInput");
-  const loginBtn = document.getElementById("loginBtn");
   const loginError = document.getElementById("loginError");
 
   // Diary elements
@@ -20,27 +19,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let diaries = [];
 
-  // Prepare audio
+  // 🎵 Prepare background audio
   const audio = new Audio("audio/mySong.mp3");
   audio.loop = true;
+  audio.volume = 0; // start silent for fade in
 
-  // ✅ Handle login
+  // 🎵 Fade In Function
+  function fadeInAudio() {
+    let fade = setInterval(() => {
+      if (audio.volume < 1) {
+        audio.volume = Math.min(1, audio.volume + 0.1);
+      } else {
+        clearInterval(fade);
+      }
+    }, 200);
+  }
+
+  // 🎵 Fade Out Function
+  function fadeOutAudio(callback) {
+    let fade = setInterval(() => {
+      if (audio.volume > 0.1) {
+        audio.volume = Math.max(0, audio.volume - 0.1);
+      } else {
+        clearInterval(fade);
+        audio.pause();
+        audio.currentTime = 0;
+        if (callback) callback();
+      }
+    }, 200);
+  }
+
+  // ✅ Handle login click
   const handleLogin = () => {
     const password = passwordInput.value.trim();
+
     if (password === correctPassword) {
       loginPage.classList.add("hidden");
       listPage.classList.remove("hidden");
-      audio.play();
       loadDiaries();
+
+      // 🎵 Try to play the song
+      audio.play().then(fadeInAudio).catch(() => {
+        console.log("Autoplay blocked — waiting for user tap");
+        document.body.addEventListener("click", () => {
+          audio.play();
+          fadeInAudio();
+        }, { once: true });
+      });
     } else {
       loginError.textContent = "Incorrect password. Try again.";
     }
   };
 
+  // 🔘 Create login button dynamically (if not in HTML)
+  let loginBtn = document.getElementById("loginBtn");
+  if (!loginBtn) {
+    loginBtn = document.createElement("button");
+    loginBtn.id = "loginBtn";
+    loginBtn.textContent = "Login";
+    loginPage.appendChild(loginBtn);
+  }
+
   loginBtn.addEventListener("click", handleLogin);
   loginBtn.addEventListener("touchstart", handleLogin);
 
-  // ✅ Load diary list from JSON
+  // ✅ Load diary list
   function loadDiaries() {
     fetch("diary.json")
       .then((res) => {
@@ -58,12 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch((err) => {
-        diaryList.innerHTML = '<li style="color:red;">Error loading diaries 😢</li>';
+        diaryList.innerHTML = <li style="color:red;">Error loading diaries 😢</li>;
         console.error(err);
       });
   }
 
-  // ✅ View diary details
+  // ✅ Open diary view
   function openDiary(index) {
     const entry = diaries[index];
     if (!entry) return;
@@ -73,19 +116,20 @@ document.addEventListener("DOMContentLoaded", () => {
     diaryContent.textContent = entry.content;
   }
 
-  // ✅ Back to list
+  // ✅ Back button
   backBtn.addEventListener("click", () => {
     viewPage.classList.add("hidden");
     listPage.classList.remove("hidden");
   });
 
-  // ✅ Logout
+  // ✅ Logout with fade-out
   logoutBtn.addEventListener("click", () => {
     listPage.classList.add("hidden");
     viewPage.classList.add("hidden");
     loginPage.classList.remove("hidden");
     passwordInput.value = "";
     loginError.textContent = "";
-    audio.pause();
+
+    fadeOutAudio();
   });
 });
