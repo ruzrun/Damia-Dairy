@@ -20,17 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let diaries = [];
 
-  // Prepare audio 
+  // Prepare audio
   const audio = new Audio("audio/mySong.mp3");
-  audio.loop = true; // audio akan repeat
+  audio.loop = true;
 
-
-  // ✅ Handle login click (works across all devices)
+  // ✅ Handle login
   const handleLogin = () => {
     const password = passwordInput.value.trim();
     if (password === correctPassword) {
       loginPage.classList.add("hidden");
       listPage.classList.remove("hidden");
+      audio.play();
       loadDiaries();
     } else {
       loginError.textContent = "Incorrect password. Try again.";
@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   loginBtn.addEventListener("click", handleLogin);
-  loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
+  loginBtn.addEventListener("touchstart", handleLogin);
 
   // ✅ Load diary list from JSON
   function loadDiaries() {
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       })
       .catch((err) => {
-        diaryList.innerHTML = <li style="color:red;">Error loading diaries 😢/li>;
+        diaryList.innerHTML = '<li style="color:red;">Error loading diaries 😢</li>';
         console.error(err);
       });
   }
@@ -86,5 +86,6 @@ document.addEventListener("DOMContentLoaded", () => {
     loginPage.classList.remove("hidden");
     passwordInput.value = "";
     loginError.textContent = "";
+    audio.pause();
   });
 });
