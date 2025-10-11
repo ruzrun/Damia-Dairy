@@ -53,30 +53,30 @@ document.addEventListener("DOMContentLoaded", () => {
   loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
 
   // ✅ Load diary list from JSON
- function loadDiaries() {
-  fetch("/Damia-Dairy/diary.json")
-    .then((res) => {
-      console.log('Fetch status:', res.status);  // Logs 200, 404, etc.
-      console.log('Fetch URL:', res.url);  // Shows the full path it's trying
-      if (!res.ok) throw new Error("Failed to load diary.json - Status: " + res.status);
-      return res.json();
-    })
-    .then((data) => {
-      console.log('Loaded data:', data);  // Logs the JSON if successful
-      diaries = data.diaries;
-      diaryList.innerHTML = "";
-      diaries.forEach((entry, index) => {
-        const li = document.createElement("li");
-        li.textContent = entry.title;
-        li.addEventListener("click", () => openDiary(index));
-        diaryList.appendChild(li);
+  function loadDiaries() {
+    fetch("diary.json")
+      .then((res) => {
+        console.log('Fetch status:', res.status);  // Logs 200, 404, etc.
+        console.log('Fetch URL:', res.url);  // Shows the full path it's trying
+        if (!res.ok) throw new Error("Failed to load diary.json - Status: " + res.status);
+        return res.json();
+      })
+      .then((data) => {
+        console.log('Loaded data:', data);  // Logs the JSON if successful
+        diaries = data.diaries;
+        diaryList.innerHTML = "";
+        diaries.forEach((entry, index) => {
+          const li = document.createElement("li");
+          li.textContent = entry.title;
+          li.addEventListener("click", () => openDiary(index));
+          diaryList.appendChild(li);
+        });
+      })
+      .catch((err) => {
+        diaryList.innerHTML = '<li style="color:red;">Sorry.. Tak Dapat Nak Access</li>';
+        console.error('Fetch error:', err.message);  // Logs the real error
       });
-    })
-    .catch((err) => {
-      diaryList.innerHTML = '<li style="color:red;">Sorry.. Tak Dapat Nak Access</li>';
-      console.error('Fetch error:', err.message);  // Logs the real error
-    });
- }
+  }
 
   // ✅ View diary details
   function openDiary(index) {
