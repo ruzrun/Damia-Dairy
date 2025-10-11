@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadDiaries();
       audio.play(); // Play audio after successful login
     } else {
-      loginError.textContent = "Password Salah. Masukkan Birthday Damia.";
+      loginError.textContent = "Password Salah. Masukkan Tarikh Birthday.";
     }
   };
 
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Load diary list from JSON
  function loadDiaries() {
-  fetch("diary.json")
+  fetch("/Damia-Dairy/diary.json")
     .then((res) => {
       console.log('Fetch status:', res.status);  // Logs 200, 404, etc.
       console.log('Fetch URL:', res.url);  // Shows the full path it's trying
