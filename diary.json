@@ -1,17 +1,12 @@
-[
-  {
-    "title": "The First Day I Saw Her",
-    "date": "2023-05-12",
-    "content": "I still remember the way she laughed that day. Everything around felt quieter, like the world paused just to let me notice her."
-  },
-  {
-    "title": "When She Smiled Again",
-    "date": "2024-01-15",
-    "content": "It’s funny how something as simple as her smile can fix my entire day. Maybe that’s what makes her special."
-  },
-  {
-    "title": "Her Birthday Gift",
-    "date": "2025-10-08",
-    "content": "I finally gave her the gift. She smiled... maybe just a little. It was enough to make my heart feel calm for the first time in months."
-  }
-]
+{
+  "diaries": [
+    {
+      "title": "First Letter",
+      "content": "Dear [Name],\nYour smile lights up my world... [your heartfelt message here]."
+    },
+    {
+      "title": "Second Letter",
+      "content": "Every moment with you is a treasure... [more text]."
+    }
+  ]
+}
