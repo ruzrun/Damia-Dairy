@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
       loadDiaries();
       audio.play(); // Play audio after successful login
     } else {
-      loginError.textContent = "Incorrect password. Try again.";
+      loginError.textContent = "Password Salah. Masukkan Birthday Damia.";
     }
   };
 
