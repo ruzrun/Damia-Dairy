@@ -16,22 +16,24 @@
       id="passwordInput"
       placeholder="Enter Password"
       inputmode="numeric"
+      aria-label="Password input"
     />
-    <button type="button" id="togglePasswordBtn">Show</button>
-    <button type="button" id="loginBtn">Login</button>
+    <button type="button" id="togglePasswordBtn" aria-label="Toggle password visibility">Show</button>
+    <button type="button" id="loginBtn" aria-label="Login button">Login</button>
     <p id="loginError"></p>
   </div>
 
   <div id="listPage" class="page hidden">
     <h2>My Diary</h2>
-    <ul id="diaryList"></ul>
-    <button id="logoutBtn">Log Out</button>
+    <ul id="diaryList" aria-label="List of diary entries"></ul>
+    <button id="logoutBtn" aria-label="Log out button">Log Out</button>
   </div>
 
   <div id="viewPage" class="page hidden">
     <h2 id="diaryTitle"></h2>
     <p id="diaryContent"></p>
-    <button id="backBtn">Back to Diary List</button>
+    <footer style="margin-top: 20px; font-size: 0.8em;">With love ❤</footer>
+    <button id="backBtn" aria-label="Back to diary list">Back to Diary List</button>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"
