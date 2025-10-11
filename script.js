@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function loadDiaries() {
     fetch("diary.json")
       .then((res) => {
-        if (!res.ok) throw new Error(Failed to load diary.json (status ${res.status}));
+        if (!res.ok) throw new Error(Failed to load diary.json(status ${res.status})));
         return res.json();
       })
       .then((data) => {
