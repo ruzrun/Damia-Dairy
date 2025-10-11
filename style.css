@@ -1,7 +1,7 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
 
@@ -36,31 +36,44 @@ body {
   display: none;
 }
 
-input {
-  width: 80%;
-  padding: 10px;
-  border: none;
-  border-radius: 10px;
-  margin-top: 20px;
-  font-size: 16px;
-  text-align: center;
+#passwordDisplay {
+  margin: 20px 0;
+  font-size: 28px;
+  letter-spacing: 8px;
+  user-select: none;
 }
 
-button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: rgba(255, 255, 255, 0.3);
+.keypad {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.key {
+  width: 80px;
+  height: 60px;
+  font-size: 18px;
   border: none;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.3);
   color: white;
-  border-radius: 10px;
-  font-size: 16px;
-  cursor: pointer;
   transition: 0.3s;
 }
 
-button:hover {
-  background-color: rgba(255, 255, 255, 0.6);
+.key:hover {
+  background: rgba(255, 255, 255, 0.6);
   color: #000;
+}
+
+#loginError {
+  color: #ff8080;
+  margin-top: 10px;
 }
 
 ul {
@@ -81,7 +94,19 @@ li:hover {
   background: rgba(255, 255, 255, 0.4);
 }
 
-#loginError {
-  color: #ff8080;
-  margin-top: 10px;
+button#logoutBtn, button#backBtn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button#logoutBtn:hover, button#backBtn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
 }
