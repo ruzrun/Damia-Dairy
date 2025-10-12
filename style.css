@@ -76,7 +76,7 @@ ul {
   background: rgba(255, 255, 255, 0.1); /* Subtle notebook background */
   border-radius: 10px;
   padding: 10px;
-  background-image: linear-gradient(to bottom, transparent 1.5em, rgba(255, 255, 255, 0.2) 1.5em); /* Lined paper effect */
+  background: transparent; /* Lined paper effect */
   background-size: 100% 1.6em;
 }
 
@@ -107,7 +107,7 @@ li::before {
   font-family: 'Dancing Script', cursive;
   font-size: 2em;
   margin-bottom: 20px;
-  color: #ff69b4; /* Pink for romance */
+  color: #fa93c7; /* Pink for romance */
 }
 
 #diaryContent {
