@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
     listPage.classList.remove("hidden");
   });
 
-  // ✅ Logout
+  // ✅ Logout 76
   logoutBtn.addEventListener("click", () => {
     listPage.classList.add("hidden");
     viewPage.classList.add("hidden");
