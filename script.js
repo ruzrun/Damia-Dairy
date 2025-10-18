@@ -52,6 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
   loginBtn.addEventListener("click", handleLogin);
   loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
 
+  async function logVisit(note) {
+  try {
+    await fetch("https://script.google.com/macros/s/AKfycbwK1nKprehPduuTM1hIaNwIX4tLUywHL-GAJjZL4DAs7KjCHWtl9SKBFnxjxrvhH1_ZJA/exec", {
+      method: "POST",
+      body: JSON.stringify({ message: note }),
+      headers: { "Content-Type": "application/json" },
+      mode: "no-cors" // untuk elak CORS error
+    });
+  } catch (err) {
+    console.error("Log failed:", err);
+  }
+}
+
   // ✅ Load diary list from JSON
   function loadDiaries() {
     fetch("diary.json")
