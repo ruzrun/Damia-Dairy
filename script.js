@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
     listPage.classList.remove("hidden");
   });
 
+ // jika di bukak google sheet detect 
+    logVisit("Opened");
+  
   // ✅ Logout 76
   logoutBtn.addEventListener("click", () => {
     listPage.classList.add("hidden");
