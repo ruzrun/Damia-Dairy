@@ -67,6 +67,8 @@ button:hover {
   color: #000;
 }
 
+
+
 ul {
   list-style: none;
   padding: 0;
@@ -180,4 +182,8 @@ li::before {
   color: #ffd700; /* Gold for elegance */
   margin-bottom: 15px;
   text-align: center;
+}
+
+#passwordInput {
+  font-family: "Courier New", monospace; /* Example: Monospace font for a 'code-like' look; change to your preferred font */
 }
