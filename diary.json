@@ -2,11 +2,13 @@
   "diaries": [
     {
       "title": "First Letter",
-      "content": "Dear [Name],\nYour smile lights up my world... [your heartfelt message here]."
+      "content": "Dear [Name],\nYour smile lights up my world... [your heartfelt message here].",
+      "date": "2025-10-18"
     },
     {
       "title": "Second Letter",
-      "content": "Every moment with you is a treasure... [more text]."
+      "content": "Every moment with you is a treasure... [more text].",
+      "date": "2025-10-19"
     }
   ]
 }
