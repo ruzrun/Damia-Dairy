@@ -44,6 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
       listPage.classList.remove("hidden");
       loadDiaries();
       audio.play(); // Play audio after successful login
+
+      // Display current date with day of the week
+      const now = new Date();
+      const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
+      const formattedDate = now.toLocaleDateString('en-US', options); // e.g., "Sunday, 19 Oct 2025"
+      document.getElementById("currentDate").textContent = formattedDate;
     } else {
       loginError.textContent = "Password Salah. Masukkan Tarikh Birthday.";
     }
@@ -99,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     viewPage.classList.remove("hidden");
     diaryTitle.textContent = entry.title;
     diaryContent.textContent = entry.content;
+    document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
   }
 
   // ✅ Back to list
