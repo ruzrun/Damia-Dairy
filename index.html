@@ -10,18 +10,20 @@
 <body>
 
   <div id="loginPage" class="page">
-    <h1>Secret Admirer</h1>
-    <input
-      type="password"
-      id="passwordInput"
-      placeholder="Enter Password"
-      inputmode="numeric"
-      aria-label="Password input"
-    />
-    <button type="button" id="togglePasswordBtn" aria-label="Toggle password visibility">Show</button>
-    <button type="button" id="loginBtn" aria-label="Login button">Login</button>
-    <p id="loginError"></p>
-  </div>
+  <h1>Secret Admirer</h1>
+  <input
+    type="password"
+    id="passwordInput"
+    placeholder="Enter Password"
+    inputmode="numeric"
+    maxlength="6"  <!-- Limits to max 6 digits -->
+    pattern="[0-9]{6}"  <!-- Requires exactly 6 digits (0-9) -->
+    aria-label="Password input"
+  />
+  <button type="button" id="togglePasswordBtn" aria-label="Toggle password visibility">Show</button>
+  <button type="button" id="loginBtn" aria-label="Login button">Login</button>
+  <p id="loginError"></p>
+</div>
 
   <div id="listPage" class="page hidden">
     <h2>My Diary</h2>
