@@ -25,12 +25,16 @@
 
   <div id="listPage" class="page hidden">
     <h2>My Diary</h2>
+    <div id="currentDate" aria-label="Current date and time"></div>
     <ul id="diaryList" aria-label="List of diary entries"></ul>
     <button id="logoutBtn" aria-label="Log out button">Log Out</button>
   </div>
 
   <div id="viewPage" class="page hidden">
-    <h2 id="diaryTitle"></h2>
+    <div class="diary-header">
+      <h2 id="diaryTitle"></h2>
+      <span id="diaryDate"></span>
+    </div>
     <p id="diaryContent"></p>
     <footer style="margin-top: 20px; font-size: 0.8em;">With love ❤</footer>
     <button id="backBtn" aria-label="Back to diary list">Back to Diary List</button>
