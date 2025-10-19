@@ -159,3 +159,25 @@ li::before {
   color: #ff8080;
   margin-top: 10px;
 }
+
+.diary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#diaryDate {
+  font-size: 1em;
+  font-style: italic;
+  color: #ffd700; /* Gold for a romantic touch; adjust as needed */
+  white-space: nowrap; /* Prevent wrapping */
+}
+
+#currentDate {
+  font-size: 1em;
+  font-style: italic;
+  color: #ffd700; /* Gold for elegance */
+  margin-bottom: 15px;
+  text-align: center;
+}
