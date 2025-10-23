@@ -1,14 +1,559 @@
 {
   "diaries": [
     {
-      "title": "First Letter",
-      "content": "Dear Damia,\nYour smile lights up my world... [your heartfelt message here].",
-      "date": "1 Oct 2025"
+      "title": "Day 1 - First Letter",
+      "content": "Dear Tina,\nYour smile lights up my world in ways words can’t explain. Even now, it still finds its way into my heart and makes everything feel warm again.",
+      "date": "20 Oct 2025"
     },
     {
-      "title": "Second Letter",
-      "content": "Every moment with you is a treasure... [more text].",
-      "date": "2 Oct 2025"
+      "title": "Day 2 - Second Letter",
+      "content": "Dear Tina,\nEvery moment with you was a treasure I’ll always carry inside me. No matter how far we’ve gone, those memories still whisper softly, reminding me of what love once felt like.",
+      "date": "21 Oct 2025"
+    },
+    {
+      "title": "Day 3 - Third Letter",
+      "content": "Dear Tina,\nI keep thinking about how your laughter could brighten even my worst days. It’s funny how something so simple could mean so much.",
+      "date": "22 Oct 2025"
+    },
+    {
+      "title": "Day 4 - Fourth Letter",
+      "content": "Dear Tina,\nSometimes I miss the calm between us, those quiet moments where words weren’t needed. Just being beside you was enough.",
+      "date": "23 Oct 2025"
+    },
+    {
+      "title": "Day 5 - Fifth Letter",
+      "content": "Dear Tina,\nI hope life’s being kind to you. You deserve peace, laughter, and every bit of happiness this world can give.",
+      "date": "24 Oct 2025"
+    },
+    {
+      "title": "Day 6 - Sixth Letter",
+      "content": "Dear Tina,\nIt’s strange how time moves on, yet some feelings stay. I’m learning that missing you doesn’t mean I’m stuck, it just means I cared deeply.",
+      "date": "25 Oct 2025"
+    },
+    {
+      "title": "Day 7 - Seventh Letter",
+      "content": "Dear Tina,\nYou taught me to love with my whole heart, even if it hurts sometimes. And for that, I’ll always be thankful.",
+      "date": "26 Oct 2025"
+    },
+    {
+      "title": "Day 8 - Eighth Letter",
+      "content": "Dear Tina,\nI saw something today that reminded me of you, a little thing, but it made me smile instead of ache. Maybe that’s progress.",
+      "date": "27 Oct 2025"
+    },
+    {
+      "title": "Day 9 - Ninth Letter",
+      "content": "Dear Tina,\nIf I could go back, I’d still choose to meet you. Even if we ended up apart, it was still one of the best chapters of my life.",
+      "date": "28 Oct 2025"
+    },
+    {
+      "title": "Day 10 - Tenth Letter",
+      "content": "Dear Tina,\nSome nights, I replay our memories like a movie. Not because I’m stuck in the past, but because those moments were real, and I don’t want to forget them.",
+      "date": "29 Oct 2025"
+    },
+    {
+      "title": "Day 11 - Eleventh Letter",
+      "content": "Dear Tina,\nYou were my calm in chaos, my soft place to land. Thank you for being that person, even if just for a while.",
+      "date": "30 Oct 2025"
+    },
+    {
+      "title": "Day 12 - Twelfth Letter",
+      "content": "Dear Tina,\nI’ve stopped asking why things had to change. Maybe some stories are meant to end early, just to teach us something unforgettable.",
+      "date": "31 Oct 2025"
+    },
+    {
+      "title": "Day 13 - Thirteenth Letter",
+      "content": "Dear Tina,\nSometimes, letting go isn’t about forgetting. It’s about learning to smile without needing what’s gone.",
+      "date": "01 Nov 2025"
+    },
+    {
+      "title": "Day 14 - Fourteenth Letter",
+      "content": "Dear Tina,\nI hope you’re smiling somewhere right now. That thought alone is enough to make my day brighter.",
+      "date": "02 Nov 2025"
+    },
+    {
+      "title": "Day 15 - Fifteenth Letter",
+      "content": "Dear Tina,\nI’ve realized love doesn’t disappear, it just changes form. Mine has turned into quiet gratitude for everything we shared.",
+      "date": "03 Nov 2025"
+    },
+    {
+      "title": "Day 16 - Sixteenth Letter",
+      "content": "Dear Tina,\nWhen I think of you now, it doesn’t hurt as much. It feels like looking at a sunset, beautiful, even though it’s fading away.",
+      "date": "04 Nov 2025"
+    },
+    {
+      "title": "Day 17 - Seventeenth Letter",
+      "content": "Dear Tina,\nI’ve stopped waiting for your texts or calls. Instead, I’m learning to write to you here, quietly, peacefully, in my own way.",
+      "date": "05 Nov 2025"
+    },
+    {
+      "title": "Day 18 - Eighteenth Letter",
+      "content": "Dear Tina,\nI don’t know if you’ll ever read this, but I hope you know you were loved, truly, deeply, and sincerely.",
+      "date": "06 Nov 2025"
+    },
+    {
+      "title": "Day 19 - Nineteenth Letter",
+      "content": "Dear Tina,\nThere’s a calm in my heart now. I guess that’s what healing feels like, remembering without breaking.",
+      "date": "07 Nov 2025"
+    },
+    {
+      "title": "Day 20 - Twentieth Letter",
+      "content": "Dear Tina,\nThis may be the twentieth letter, but my wish stays the same: may you always find the happiness you once brought into my life.",
+      "date": "08 Nov 2025"
+    },
+    {
+      "title": "Day 21 - Twenty-First Letter",
+      "content": "Dear Tina,\nI still think about the way you used to look at me, like you saw the good parts I couldn’t see myself. I hope you see that in you, too.",
+      "date": "09 Nov 2025"
+    },
+    {
+      "title": "Day 22 - Twenty-Second Letter",
+      "content": "Dear Tina,\nI heard a song today that took me back to us. Instead of sadness, it brought a gentle smile. Maybe that’s what moving on really feels like.",
+      "date": "10 Nov 2025"
+    },
+    {
+      "title": "Day 23 - Twenty-Third Letter",
+      "content": "Dear Tina,\nIf I could say one more thing, it would be this, thank you for showing me what it means to love without fear.",
+      "date": "11 Nov 2025"
+    },
+    {
+      "title": "Day 24 - Twenty-Fourth Letter",
+      "content": "Dear Tina,\nSometimes I still catch myself wondering how you’re doing. I hope your days are filled with light, laughter, and calm mornings.",
+      "date": "12 Nov 2025"
+    },
+    {
+      "title": "Day 25 - Twenty-Fifth Letter",
+      "content": "Dear Tina,\nI’m slowly learning to be okay with the silence. It’s not empty anymore, it’s peaceful.",
+      "date": "13 Nov 2025"
+    },
+    {
+      "title": "Day 26 - Twenty-Sixth Letter",
+      "content": "Dear Tina,\nI think I’ve forgiven everything, you, me, the ending. There’s no anger left, only understanding.",
+      "date": "14 Nov 2025"
+    },
+    {
+      "title": "Day 27 - Twenty-Seventh Letter",
+      "content": "Dear Tina,\nYour memory used to feel heavy. Now it’s like a soft breeze, still there, but gentle.",
+      "date": "15 Nov 2025"
+    },
+    {
+      "title": "Day 28 - Twenty-Eighth Letter",
+      "content": "Dear Tina,\nI realized that healing isn’t about erasing you, it’s about learning to carry love differently.",
+      "date": "16 Nov 2025"
+    },
+    {
+      "title": "Day 29 - Twenty-Ninth Letter",
+      "content": "Dear Tina,\nIf you ever think of me, I hope it’s with kindness. That’s how I think of you now.",
+      "date": "17 Nov 2025"
+    },
+    {
+      "title": "Day 30 - Thirtieth Letter",
+      "content": "Dear Tina,\nHalfway through these letters, and I feel lighter. You’ll always be part of my story, just not my ending.",
+      "date": "18 Nov 2025"
+    },
+    {
+      "title": "Day 31 - Thirty-First Letter",
+      "content": "Dear Tina,\nThere are days I still miss you deeply, but it doesn’t ache the same way. I guess time really does heal in quiet ways.",
+      "date": "19 Nov 2025"
+    },
+    {
+      "title": "Day 32 - Thirty-Second Letter",
+      "content": "Dear Tina,\nI hope someone out there makes you laugh the way you used to laugh with me. You deserve that kind of joy forever.",
+      "date": "20 Nov 2025"
+    },
+    {
+      "title": "Day 33 - Thirty-Third Letter",
+      "content": "Dear Tina,\nLove changes, but it never truly ends. It just becomes softer, quieter  like a song fading out beautifully.",
+      "date": "21 Nov 2025"
+    },
+    {
+      "title": "Day 34 - Thirty-Fourth Letter",
+      "content": "Dear Tina,\nSometimes I look back and realize  even the pain had purpose. It taught me strength and patience.",
+      "date": "22 Nov 2025"
+    },
+    {
+      "title": "Day 35 - Thirty-Fifth Letter",
+      "content": "Dear Tina,\nI no longer feel lost when I think of you. I just feel thankful that we crossed paths.",
+      "date": "23 Nov 2025"
+    },
+    {
+      "title": "Day 36 - Thirty-Sixth Letter",
+      "content": "Dear Tina,\nI’ve started to dream new dreams, ones that are mine alone. But you’ll always be part of what taught me to hope.",
+      "date": "24 Nov 2025"
+    },
+    {
+      "title": "Day 37 - Thirty-Seventh Letter",
+      "content": "Dear Tina,\nIf we ever meet again someday, I hope we smile, not with sadness, but with peace.",
+      "date": "25 Nov 2025"
+    },
+    {
+      "title": "Day 38 - Thirty-Eighth Letter",
+      "content": "Dear Tina,\nI’ve realized love doesn’t mean holding on forever. Sometimes it means letting go beautifully.",
+      "date": "26 Nov 2025"
+    },
+    {
+      "title": "Day 39 - Thirty-Ninth Letter",
+      "content": "Dear Tina,\nI’ve stopped writing these to fix the past. Now, I write them to remember how far I’ve come.",
+      "date": "27 Nov 2025"
+    },
+    {
+      "title": "Day 40 - Fortieth Letter",
+      "content": "Dear Tina,\nYou’ll always be a piece of my heart’s history, not the whole story, but a meaningful chapter.",
+      "date": "28 Nov 2025"
+    },
+    {
+      "title": "Day 41 - Forty-First Letter",
+      "content": "Dear Tina,\nI found an old photo of us today. I didn’t feel sad, just nostalgic, and that’s a kind of healing too.",
+      "date": "29 Nov 2025"
+    },
+    {
+      "title": "Day 42 - Forty-Second Letter",
+      "content": "Dear Tina,\nSometimes I think maybe we met to learn how to love better, for the next time, for the next person, or maybe just for ourselves.",
+      "date": "30 Nov 2025"
+    },
+    {
+      "title": "Day 43 - Forty-Third Letter",
+      "content": "Dear Tina,\nI’m learning to love myself the way I once loved you, gently, patiently, and completely.",
+      "date": "01 Dec 2025"
+    },
+    {
+      "title": "Day 44 - Forty-Fourth Letter",
+      "content": "Dear Tina,\nThe nights don’t feel as empty anymore. Maybe that’s because I’ve started filling them with new dreams instead of old memories.",
+      "date": "02 Dec 2025"
+    },
+    {
+      "title": "Day 45 - Forty-Fifth Letter",
+      "content": "Dear Tina,\nI hope one day you find someone who sees you exactly the way I did, with wonder and warmth. You deserve that always.",
+      "date": "03 Dec 2025"
+    },
+    {
+      "title": "Day 46 - Forty-Sixth Letter",
+      "content": "Dear Tina,\nI’ve grown a lot since we parted. The world feels bigger now, and I’m not afraid to explore it anymore.",
+      "date": "04 Dec 2025"
+    },
+    {
+      "title": "Day 47 - Forty-Seventh Letter",
+      "content": "Dear Tina,\nThis journey taught me something precious, love is never wasted, even when it ends.",
+      "date": "05 Dec 2025"
+    },
+    {
+      "title": "Day 48 - Forty-Eighth Letter",
+      "content": "Dear Tina,\nIf I could talk to my past self, I’d tell them not to be sad, because every heartbreak leads to a better version of yourself.",
+      "date": "06 Dec 2025"
+    },
+    {
+      "title": "Day 49 - Forty-Ninth Letter",
+      "content": "Dear Tina,\nI think I’m ready to stop writing now. Not because I’ve forgotten you, but because I’ve finally made peace with everything.",
+      "date": "07 Dec 2025"
+    },
+    {
+      "title": "Day 50 - Fiftieth Letter",
+      "content": "Dear Tina,\nFifty days, fifty letters, and one simple truth: I will always wish you the best, wherever life takes you. Thank you for being part of my story.",
+      "date": "08 Dec 2025"
+    },
+    {
+      "title": "Day 51 - Fifty-First Letter",
+      "content": "Dear Tina,\nToday I realized healing isn’t forgetting, it’s remembering without pain. I’m proud of how far I’ve come.",
+      "date": "09 Dec 2025"
+    },
+    {
+      "title": "Day 52 - Fifty-Second Letter",
+      "content": "Dear Tina,\nI woke up feeling light today. Maybe this is what peace feels like, soft, steady, and earned.",
+      "date": "10 Dec 2025"
+    },
+    {
+      "title": "Day 53 - Fifty-Third Letter",
+      "content": "Dear Tina,\nI’ve started finding beauty in small things again, morning light, quiet songs, even empty roads. It feels good to notice life.",
+      "date": "11 Dec 2025"
+    },
+    {
+      "title": "Day 54 - Fifty-Fourth Letter",
+      "content": "Dear Tina,\nIt’s strange, I no longer write these to reach you, but to reach me. Every word feels like stitching my own heart back together.",
+      "date": "12 Dec 2025"
+    },
+    {
+      "title": "Day 55 - Fifty-Fifth Letter",
+      "content": "Dear Tina,\nI smiled at myself in the mirror today. For the first time in a long while, it didn’t feel forced.",
+      "date": "13 Dec 2025"
+    },
+    {
+      "title": "Day 56 - Fifty-Sixth Letter",
+      "content": "Dear Tina,\nI’ve been spending more time outside lately, it’s peaceful to just breathe and exist without needing a reason.",
+      "date": "14 Dec 2025"
+    },
+    {
+      "title": "Day 57 - Fifty-Seventh Letter",
+      "content": "Dear Tina,\nI think I’ve learned that love doesn’t vanish, it transforms into gratitude, then into quiet strength.",
+      "date": "15 Dec 2025"
+    },
+    {
+      "title": "Day 58 - Fifty-Eighth Letter",
+      "content": "Dear Tina,\nI’ve stopped replaying what went wrong. Now, I focus on what went right, how much I grew from loving you.",
+      "date": "16 Dec 2025"
+    },
+    {
+      "title": "Day 59 - Fifty-Ninth Letter",
+      "content": "Dear Tina,\nI feel calmer these days. Maybe healing isn’t dramatic maybe it’s just waking up without the heaviness.",
+      "date": "17 Dec 2025"
+    },
+    {
+      "title": "Day 60 - Sixtieth Letter",
+      "content": "Dear Tina,\nIt feels good to look forward again. My heart’s no longer stuck in the past, it’s learning to dream.",
+      "date": "18 Dec 2025"
+    },
+    {
+      "title": "Day 61 - Sixty-First Letter",
+      "content": "Dear Tina,\nI’m learning to be kind to myself, the same way I once was with you. It feels new, but right.",
+      "date": "19 Dec 2025"
+    },
+    {
+      "title": "Day 62 - Sixty-Second Letter",
+      "content": "Dear Tina,\nI’ve realized closure doesn’t come from words, it comes from acceptance, and I finally have that.",
+      "date": "20 Dec 2025"
+    },
+    {
+      "title": "Day 63 - Sixty-Third Letter",
+      "content": "Dear Tina,\nSometimes, I catch myself humming again. I didn’t notice when the silence left, but I’m glad it did.",
+      "date": "21 Dec 2025"
+    },
+    {
+      "title": "Day 64 - Sixty-Fourth Letter",
+      "content": "Dear Tina,\nThe world feels brighter lately. Maybe it was never dim, maybe I just needed time to see the light again.",
+      "date": "22 Dec 2025"
+    },
+    {
+      "title": "Day 65 - Sixty-Fifth Letter",
+      "content": "Dear Tina,\nI met new people today, and it didn’t feel wrong. My heart has room for new laughter now.",
+      "date": "23 Dec 2025"
+    },
+    {
+      "title": "Day 66 - Sixty-Sixth Letter",
+      "content": "Dear Tina,\nIt’s strange how peace sneaks in quietly, no big moment, just a steady calm that stays.",
+      "date": "24 Dec 2025"
+    },
+    {
+      "title": "Day 67 - Sixty-Seventh Letter",
+      "content": "Dear Tina,\nI’m not the same person I was when we said goodbye, I’m softer, wiser, and more at peace with myself.",
+      "date": "25 Dec 2025"
+    },
+    {
+      "title": "Day 68 - Sixty-Eighth Letter",
+      "content": "Dear Tina,\nIt’s Christmas today. I used to think I couldn’t celebrate without you, but I did, and it felt okay.",
+      "date": "26 Dec 2025"
+    },
+    {
+      "title": "Day 69 - Sixty-Ninth Letter",
+      "content": "Dear Tina,\nI don’t chase what left anymore. I trust that what’s meant for me will stay, or return in a new way.",
+      "date": "27 Dec 2025"
+    },
+    {
+      "title": "Day 70 - Seventieth Letter",
+      "content": "Dear Tina,\nI’ve learned to thank the past without living in it. That’s real freedom, I think.",
+      "date": "28 Dec 2025"
+    },
+    {
+      "title": "Day 71 - Seventy-First Letter",
+      "content": "Dear Tina,\nIt’s the end of the year soon. I’m proud of the version of me that kept going, even when it hurt.",
+      "date": "29 Dec 2025"
+    },
+    {
+      "title": "Day 72 - Seventy-Second Letter",
+      "content": "Dear Tina,\nAs the new year comes, I’m letting go of what no longer serves me, gently, lovingly, without regret.",
+      "date": "30 Dec 2025"
+    },
+    {
+      "title": "Day 73 - Seventy-Third Letter",
+      "content": "Dear Tina,\nGoodbye, 2025. You were full of lessons, tears, and healing. I’m ready for what’s next.",
+      "date": "31 Dec 2025"
+    },
+    {
+      "title": "Day 74 - Seventy-Fourth Letter",
+      "content": "Dear Tina,\nHello, 2026. I start this year with peace in my heart and hope in my hands.",
+      "date": "01 Jan 2026"
+    },
+    {
+      "title": "Day 75 - Seventy-Fifth Letter",
+      "content": "Dear Tina,\nI no longer need answers. Some things just end, and that’s okay, it makes room for new beginnings.",
+      "date": "02 Jan 2026"
+    },
+    {
+      "title": "Day 76 - Seventy-Sixth Letter",
+      "content": "Dear Tina,\nMy heart feels quiet, but full. I’m learning to love the calm after the storm.",
+      "date": "03 Jan 2026"
+    },
+    {
+      "title": "Day 77 - Seventy-Seventh Letter",
+      "content": "Dear Tina,\nI’m grateful, not just for us, but for everything that came after. Growth, healing, strength.",
+      "date": "04 Jan 2026"
+    },
+    {
+      "title": "Day 78 - Seventy-Eighth Letter",
+      "content": "Dear Tina,\nI’ve stopped comparing my present to the past. This version of life feels just right.",
+      "date": "05 Jan 2026"
+    },
+    {
+      "title": "Day 79 - Seventy-Ninth Letter",
+      "content": "Dear Tina,\nLove still lives here, not for you, but for the world, for myself, for what’s ahead.",
+      "date": "06 Jan 2026"
+    },
+    {
+      "title": "Day 80 - Eightieth Letter",
+      "content": "Dear Tina,\nI’ve started journaling for me, not us. It feels freeing, like breathing after holding my breath too long.",
+      "date": "07 Jan 2026"
+    },
+    {
+      "title": "Day 81 - Eighty-First Letter",
+      "content": "Dear Tina,\nI’ve realized self-love isn’t selfish, it’s the foundation for every other kind of love.",
+      "date": "08 Jan 2026"
+    },
+    {
+      "title": "Day 82 - Eighty-Second Letter",
+      "content": "Dear Tina,\nSomewhere along the way, I stopped missing what was and started loving what is.",
+      "date": "09 Jan 2026"
+    },
+    {
+      "title": "Day 83 - Eighty-Third Letter",
+      "content": "Dear Tina,\nI’m proud of myself, for staying soft in a world that tried to harden me.",
+      "date": "10 Jan 2026"
+    },
+    {
+      "title": "Day 84 - Eighty-Fourth Letter",
+      "content": "Dear Tina,\nToday, I looked up at the sky and smiled. I think that’s what peace looks like, endless and light.",
+      "date": "11 Jan 2026"
+    },
+    {
+      "title": "Day 85 - Eighty-Fifth Letter",
+      "content": "Dear Tina,\nI no longer write to fill a void, I write because I love how words can heal.",
+      "date": "12 Jan 2026"
+    },
+    {
+      "title": "Day 86 - Eighty-Sixth Letter",
+      "content": "Dear Tina,\nI’ve learned that love, true love, teaches us to grow even after it’s gone.",
+      "date": "13 Jan 2026"
+    },
+    {
+      "title": "Day 87 - Eighty-Seventh Letter",
+      "content": "Dear Tina,\nI used to fear endings. Now, I see them as quiet beginnings in disguise.",
+      "date": "14 Jan 2026"
+    },
+    {
+      "title": "Day 88 - Eighty-Eighth Letter",
+      "content": "Dear Tina,\nI’ve stopped wishing for what could’ve been. Instead, I’m building what can be.",
+      "date": "15 Jan 2026"
+    },
+    {
+      "title": "Day 89 - Eighty-Ninth Letter",
+      "content": "Dear Tina,\nI’m at peace. That’s all I ever really wanted, not to move on, but to move forward.",
+      "date": "16 Jan 2026"
+    },
+    {
+      "title": "Day 90 - Ninetieth Letter",
+      "content": "Dear Tina,\nI look back with no bitterness. Just a quiet thank you for the chapter that shaped me.",
+      "date": "17 Jan 2026"
+    },
+    {
+      "title": "Day 91 - Ninety-First Letter",
+      "content": "Dear Tina,\nThere’s beauty in endings. They teach us to appreciate beginnings.",
+      "date": "18 Jan 2026"
+    },
+    {
+      "title": "Day 92 - Ninety-Second Letter",
+      "content": "Dear Tina,\nI’m surrounded by love, from friends, from the world, from myself. And that’s enough.",
+      "date": "19 Jan 2026"
+    },
+    {
+      "title": "Day 93 - Ninety-Third Letter",
+      "content": "Dear Tina,\nIf I could tell you one thing now, it’s this: I’m happy. Truly.",
+      "date": "20 Jan 2026"
+    },
+    {
+      "title": "Day 94 - Ninety-Fourth Letter",
+      "content": "Dear Tina,\nThe ache is gone. What remains is light, and I carry it gently wherever I go.",
+      "date": "21 Jan 2026"
+    },
+    {
+      "title": "Day 95 - Ninety-Fifth Letter",
+      "content": "Dear Tina,\nYou’ll always be part of the reason I learned to love deeply. And for that, I’m endlessly grateful.",
+      "date": "22 Jan 2026"
+    },
+    {
+      "title": "Day 96 - Ninety-Sixth Letter",
+      "content": "Dear Tina,\nMy heart feels whole again. It carries love, not loss.",
+      "date": "23 Jan 2026"
+    },
+    {
+      "title": "Day 97 - Ninety-Seventh Letter",
+      "content": "Dear Tina,\nI’m learning that the best love stories are the ones we build with ourselves.",
+      "date": "24 Jan 2026"
+    },
+    {
+      "title": "Day 98 - Ninety-Eighth Letter",
+      "content": "Dear Tina,\nI hope you’ve found your peace, too. Because I finally found mine.",
+      "date": "25 Jan 2026"
+    },
+    {
+      "title": "Day 99 - Ninety-Ninth Letter",
+      "content": "Dear Tina,\nThis journey began with heartbreak, but it ends with strength. I made it through.",
+      "date": "26 Jan 2026"
+    },
+    {
+      "title": "Day 100 - One Hundredth Letter",
+      "content": "Dear Tina,\nOne hundred letters later, and I’ve learned love doesn’t always last, but it always teaches. Thank you, Tina, for being my lesson and my light.",
+      "date": "27 Jan 2026"
+    },
+    {
+      "title": "Day 101 - One Hundred and First Letter",
+      "content": "Dear Tina,\nSometimes I think the universe smiled the day you were born. You carry a light in you that never fades, not even when life tries to dim it. You’re lucky, not because everything is easy, but because you were given a heart that can still love after breaking, a soul that still believes after falling. You are the kind of lucky that comes from being genuine, from being exactly who you are, even when the world changes around you.",
+      "date": "28 Jan 2026"
+    },
+    {
+      "title": "Day 102  One Hundred and Second Letter",
+      "content": "Dear Tina,\nYou may not see it, but you are the most lucky person I’ve ever met, not for what you have, but for what you give. You give peace just by existing, kindness without expecting anything back, and love in its purest form. The world becomes softer when you’re in it. If luck had a face, it would look like yours, bright eyes, a heart full of care, and a smile that makes time pause for a moment.",
+      "date": "29 Jan 2026"
+    },
+    {
+      "title": "Day 103 - One Hundred and Third Letter",
+      "content": "Dear Tina,\nYou are lucky because you live with sincerity, something rare and beautiful. You don’t chase attention, yet the world naturally turns toward you. You don’t try to impress, yet your presence impresses. I’ve watched how even the simplest things, your laugh, your way of talking, your quiet thoughts, make everything feel softer. It’s as if life itself bends gently when you walk through it. That’s a kind of luck only a few ever carry.",
+      "date": "30 Jan 2026"
+    },
+    {
+      "title": "Day 104 - One Hundred and Fourth Letter",
+      "content": "Dear Tina,\nYou might not realize this, but you were born with a heart that turns ordinary days into something magical. That’s your luck, Tina. The way you make others feel seen, the way you listen without judgment, and the way you hold moments as if they matter, that’s something even time can’t take away. People like you leave traces of light wherever they go, and I feel lucky just to have walked near that glow.",
+      "date": "31 Jan 2026"
+    },
+    {
+      "title": "Day 105 - One Hundred and Fifth Letter",
+      "content": "Dear Tina,\nThe more I think of it, the more I realize how lucky you truly are, not because life gave you everything, but because you learned how to turn every little thing into something beautiful. You turn pain into poetry, mistakes into lessons, and memories into warmth. You are lucky because you understand love, not as something to own, but something to share. And that makes your heart shine brighter than anything else in this world.",
+      "date": "01 Feb 2026"
+    },
+    {
+      "title": "Day 106 - One Hundred and Sixth Letter",
+      "content": "Dear Tina,\nYou are lucky in the way the moon is lucky, silent, steady, and always glowing no matter how dark the sky gets. You don’t ask for much, yet somehow you give more than most people ever could. You’re lucky because you have peace within you, the kind that can’t be bought or faked. You remind me that true luck isn’t about fortune or fame; it’s about being loved for simply being who you are. And you, Tina, are exactly that, pure, rare, and unforgettable.",
+      "date": "02 Feb 2026"
+    },
+    {
+      "title": "Day 107 - One Hundred and Seventh Letter",
+      "content": "Dear Tina,\nI sometimes think you’re the kind of lucky that angels talk about quietly, not the kind that wins prizes, but the kind that wins hearts without trying. You’re lucky because you carry love like sunlight, it touches everything and everyone, and yet there’s always more to give. I’ve never met anyone whose soul felt as honest as yours. The world is lucky to have you, Tina, and so am I, for ever knowing you existed this way.",
+      "date": "03 Feb 2026"
+    },
+    {
+      "title": "Day 108 - One Hundred and Eighth Letter",
+      "content": "Dear Tina,\nLuck isn’t always about what happens to us, it’s about how we see the world. And that’s what makes you so lucky. You find joy in rain, strength in silence, hope in endings. You turn everything life gives, even pain, into something meaningful. People cross paths with you and leave a little better, a little lighter. That’s not coincidence; that’s your quiet magic, your endless grace. That’s the luck that never runs out.",
+      "date": "04 Feb 2026"
+    },
+    {
+      "title": "Day 109 - One Hundred and Ninth Letter",
+      "content": "Dear Tina,\nYou’re lucky because you’re real. In a world full of pretending, you stay true to your feelings, even the messy ones. You love deeply, you care honestly, and you walk through life with your heart open, even after being hurt. That’s courage, Tina, and courage is the rarest kind of luck. You’ve made every person who’s known you a little braver, including me. You’ll never know how much light you’ve left behind just by being yourself.",
+      "date": "05 Feb 2026"
+    },
+    {
+      "title": "Day 110 - One Hundred and Tenth Letter",
+      "content": "Dear Tina,\nIf there’s such a thing as fate, I think yours is written in golden ink. You are lucky, Tina, not because of what you have, but because of what you are. You are warmth wrapped in laughter, honesty dressed as kindness, and strength hidden behind gentle eyes. Every story you touch changes for the better. And if someone ever asks me what luck looks like, I’ll tell them: it looks like you, real, radiant, and rare beyond words.",
+      "date": "06 Feb 2026"
+    },
+    {
+  "title": "Special Letter - The Day We First Met",
+  "content": "Hey Tina,\nTina still remember the day we first met at the robotics competition? That time, Tina was just someone Warun suddenly noticed in the crowd. Warun didn’t even plan to care about anyone new, but when Warun saw Tina, something just paused inside. Warun kept thinking, “Siapa dia tu?” and before Warun realised it, Warun just wanted to know Tina more.\n\nLepas tu, Warun minta kawan tolong dapatkan nombor Tina, and that was how both of us started talking. Those early days felt so simple but full of meaning in every chat and every small laugh. One day, Warun confessed to Tina and Tina accepted. Warun still remember that moment so clearly. It felt like something new had finally started.\n\nThen came all the memories, the calls, the jokes, the small fights, the things only both of us would understand. Even though things changed later, Warun will never forget how real those moments felt.\n\nBefore we broke up, Warun decided to ajak Tina keluar. Even though it was just for a while, that day meant a lot to Warun. We had fun together. Warun still remember buying that capybara plushie for Tina, belanja Mixue, ambil gambar sama-sama, makan sebelah. It wasn’t anything fancy but it felt special because it was with Tina. Warun still remember how Tina smiled that day, how Tina made everything around feel calm and warm. Those memories will always stay, not because they were perfect but because they were real.\n\nTina, Warun harap Tina akan selalu ingat that Warun still care, even if things between us are not the same anymore. Tina was the first person who treated Warun right, who showed that Warun could still smile even when life felt heavy. No matter where life brings us after this, Warun will always be thankful that our paths crossed. Tina will always have a small and quiet space inside Warun’s heart, not out of sadness but out of gratitude for everything we shared.",
+  "date": "Special Day"
     }
   ]
 }
