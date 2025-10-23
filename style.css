@@ -120,6 +120,8 @@ li::before {
   line-height: 1.6;
   white-space: pre-wrap; /* Preserve line breaks from JSON */
   animation: reveal 1s ease-out; /* Animation on open */
+  max-height: 300px; /* Adjust this value based on your design; e.g., 300px or 50vh */
+  overflow-y: auto; /* Enables vertical scrolling if content exceeds max-height */
 }
 
 @keyframes reveal {
