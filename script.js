@@ -99,11 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-
-
-
-
-  // ✅ View diary details
+// ✅ View diary details
 function openDiary(index) {
   const entry = diaries[index];
   if (!entry) return;
@@ -112,7 +108,7 @@ function openDiary(index) {
   });
   diaryTitle.textContent = entry.title;
   diaryContent.textContent = entry.content;
-  document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
+  document.getElementById("diaryDate").textContent = entry.date ? entry.date : '';
 
   // Clear any existing Polaroid
   const existingPolaroid = document.querySelector('.polaroid');
@@ -128,15 +124,22 @@ function openDiary(index) {
     img.src = entry.image;
     img.alt = 'Polaroid image for diary entry';
     polaroid.appendChild(img);
-    viewPage.appendChild(polaroid);  // Append to #viewPage for fixed positioning outside content
+    viewPage.appendChild(polaroid);  // Append to #viewPage
 
-    // Toggle size on click
+    // Click to show popup modal
     polaroid.addEventListener('click', () => {
-      polaroid.classList.toggle('enlarged');
+      document.getElementById('modalImage').src = entry.image;
+      document.getElementById('polaroidModal').style.display = 'flex';
     });
   }
 }
 
+// Add modal close logic (outside openDiary, in DOMContentLoaded)
+const modal = document.getElementById('polaroidModal');
+modal.addEventListener('click', () => {
+  modal.style.display = 'none';  // Close on click anywhere
+});
+  
   // ✅ Back to list
   backBtn.addEventListener("click", () => {
     $(viewPage).fadeOut(400, function() {
