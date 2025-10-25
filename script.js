@@ -40,12 +40,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const handleLogin = () => {
     const password = passwordInput.value.trim();
     if (password === correctPassword) {
-      loginPage.classList.add("hidden");
-      listPage.classList.remove("hidden");
-      loadDiaries();
-      audio.play(); // Play audio after successful login
+      $(loginPage).fadeOut(400, function() {
+        $(listPage).fadeIn(400, function() {
+          loadDiaries(); // Load diaries after fade-in; audio plays inside if successful
+        });
+      });
 
-      // Display current date with day of the week
+      // Display current date with day of the week (shows immediately after fade-in starts)
       const now = new Date();
       const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
       const formattedDate = now.toLocaleDateString('en-US', options); // e.g., "Sunday, 19 Oct 2025"
@@ -90,6 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
           li.addEventListener("click", () => openDiary(index));
           diaryList.appendChild(li);
         });
+        audio.play(); // Play audio here, after list appears (fetch succeeds and list is populated)
       })
       .catch((err) => {
         diaryList.innerHTML = '<li style="color:black;">Sorry.. Tak Dapat Nak Access</li>';
@@ -101,27 +103,53 @@ document.addEventListener("DOMContentLoaded", () => {
   function openDiary(index) {
     const entry = diaries[index];
     if (!entry) return;
-    listPage.classList.add("hidden");
-    viewPage.classList.remove("hidden");
+    $(listPage).fadeOut(400, function() {
+      $(viewPage).fadeIn(400);
+    });
     diaryTitle.textContent = entry.title;
     diaryContent.textContent = entry.content;
     document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
+
+    // Clear any existing Polaroid
+    const existingPolaroid = document.querySelector('.polaroid');
+    if (existingPolaroid) {
+      existingPolaroid.remove();
+    }
+
+    // Add Polaroid if image exists
+    if (entry.image) {
+      const polaroid = document.createElement('div');
+      polaroid.classList.add('polaroid');
+      const img = document.createElement('img');
+      img.src = entry.image;
+      img.alt = 'Polaroid image for diary entry';
+      polaroid.appendChild(img);
+      diaryContent.appendChild(polaroid);
+
+      // Toggle size on click
+      polaroid.addEventListener('click', () => {
+        polaroid.classList.toggle('enlarged');
+      });
+    }
   }
 
   // ✅ Back to list
   backBtn.addEventListener("click", () => {
-    viewPage.classList.add("hidden");
-    listPage.classList.remove("hidden");
+    $(viewPage).fadeOut(400, function() {
+      $(listPage).fadeIn(400);
+    });
   });
 
  // jika di bukak google sheet detect 
     logVisit("Opened");
   
-  // ✅ Logout 76
+  // ✅ Logout
   logoutBtn.addEventListener("click", () => {
-    listPage.classList.add("hidden");
-    viewPage.classList.add("hidden");
-    loginPage.classList.remove("hidden");
+    $(listPage).fadeOut(400, function() {
+      $(viewPage).fadeOut(400, function() {
+        $(loginPage).fadeIn(400);
+      });
+    });
     passwordInput.value = "";
     loginError.textContent = "";
     audio.pause(); // Pause audio on logout
