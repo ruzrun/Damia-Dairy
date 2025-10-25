@@ -35,13 +35,18 @@
 
   <div id="viewPage" class="page hidden">
     <div class="diary-header">
-      <h2 id="diaryTitle"></h2>
-      <span id="diaryDate"></span>
-    </div>
-    <p id="diaryContent"></p>
-    <footer style="margin-top: 20px; font-size: 0.8em;">With love ❤</footer>
-    <button id="backBtn" aria-label="Back to diary list">Back to Diary List</button>
+    <h2 id="diaryTitle"></h2>
+    <span id="diaryDate"></span>
   </div>
+  <p id="diaryContent"></p>
+  <footer style="margin-top: 20px; font-size: 0.8em;">With love ❤</footer>
+  <button id="backBtn" aria-label="Back to diary list">Back to Diary List</button>
+  <div id="polaroidModal" class="modal hidden"> <!-- New modal container -->
+    <div class="modal-content">
+      <img id="modalImage" src="" alt="Enlarged Polaroid">
+    </div>
+  </div>
+</div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"
     integrity="sha512-synHs+rLg2WDVE9U0oHVJURDCiqft60GcWOW7tXySy8oIr0Hjl3K9gv7Bq/gSj4NDVpc5vmsNkMGGJ6t2VpUMA=="
