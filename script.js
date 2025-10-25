@@ -99,39 +99,43 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
+
+
+
+
   // ✅ View diary details
-  function openDiary(index) {
-    const entry = diaries[index];
-    if (!entry) return;
-    $(listPage).fadeOut(400, function() {
-      $(viewPage).fadeIn(400);
-    });
-    diaryTitle.textContent = entry.title;
-    diaryContent.textContent = entry.content;
-    document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
+function openDiary(index) {
+  const entry = diaries[index];
+  if (!entry) return;
+  $(listPage).fadeOut(400, function() {
+    $(viewPage).fadeIn(400);
+  });
+  diaryTitle.textContent = entry.title;
+  diaryContent.textContent = entry.content;
+  document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
 
-    // Clear any existing Polaroid
-    const existingPolaroid = document.querySelector('.polaroid');
-    if (existingPolaroid) {
-      existingPolaroid.remove();
-    }
-
-    // Add Polaroid if image exists
-    if (entry.image) {
-      const polaroid = document.createElement('div');
-      polaroid.classList.add('polaroid');
-      const img = document.createElement('img');
-      img.src = entry.image;
-      img.alt = 'Polaroid image for diary entry';
-      polaroid.appendChild(img);
-      diaryContent.appendChild(polaroid);
-
-      // Toggle size on click
-      polaroid.addEventListener('click', () => {
-        polaroid.classList.toggle('enlarged');
-      });
-    }
+  // Clear any existing Polaroid
+  const existingPolaroid = document.querySelector('.polaroid');
+  if (existingPolaroid) {
+    existingPolaroid.remove();
   }
+
+  // Add Polaroid if image exists
+  if (entry.image) {
+    const polaroid = document.createElement('div');
+    polaroid.classList.add('polaroid');
+    const img = document.createElement('img');
+    img.src = entry.image;
+    img.alt = 'Polaroid image for diary entry';
+    polaroid.appendChild(img);
+    viewPage.appendChild(polaroid);  // Append to #viewPage for fixed positioning outside content
+
+    // Toggle size on click
+    polaroid.addEventListener('click', () => {
+      polaroid.classList.toggle('enlarged');
+    });
+  }
+}
 
   // ✅ Back to list
   backBtn.addEventListener("click", () => {
