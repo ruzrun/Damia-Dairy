@@ -122,6 +122,34 @@ li::before {
   animation: reveal 1s ease-out; /* Animation on open */
   max-height: 300px; /* Adjust this value based on your design; e.g., 300px or 50vh */
   overflow-y: auto; /* Enables vertical scrolling if content exceeds max-height */
+  position: relative; /* Allows absolute positioning for Polaroid */
+}
+
+.polaroid {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 100px; /* Small size */
+  height: auto;
+  border: 8px solid #fff; /* Polaroid frame */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  transform: rotate(15deg); /* Tilted for letter-like feel */
+  cursor: pointer;
+  transition: width 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.polaroid.enlarged {
+  width: 300px; /* Larger size */
+  transform: rotate(0deg); /* Straighten when enlarged */
+  bottom: 20px;
+  right: 20px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 @keyframes reveal {
