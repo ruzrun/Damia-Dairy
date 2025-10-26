@@ -222,19 +222,32 @@ li::before {
   position: relative; /* Positioning context */
 }
 
-/* Small Polaroid (outside corner) */
+/* Polaroid Animation */
 .polaroid {
   position: absolute;
-  bottom: -20px; /* Slightly outside bottom */
-  right: -20px; /* Slightly outside right */
+  bottom: -20px;
+  right: -20px;
   width: 100px;
   height: auto;
   border: 8px solid #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   transform: rotate(15deg);
   cursor: pointer;
-  transition: transform 0.3s ease;
+  animation: polaroidAppear 1.5s ease-in forwards;  /* Slow appear animation */
+  opacity: 0;  /* Start hidden */
   z-index: 20;
+}
+
+@keyframes polaroidAppear {
+  from { opacity: 0; transform: translateY(20px) rotate(15deg); }  /* Slide up and fade in */
+  to { opacity: 1; transform: translateY(0) rotate(15deg); }
+}
+
+/* Second Polaroid (side-by-side, slightly offset) */
+.polaroid-second {
+  right: 60px;  /* Shift left next to first; adjust as needed */
+  transform: rotate(-10deg);  /* Opposite tilt for variety */
+  animation-delay: 0.3s;  /* Slight delay for second one */
 }
 
 .polaroid img {
@@ -243,16 +256,16 @@ li::before {
   display: block;
 }
 
-/* Modal Popup */
+/* Modal Popup (unchanged) */
 .modal {
-  display: none; /* Hidden by default */
+  display: none;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
-  z-index: 100; /* On top of everything */
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 100;
   justify-content: center;
   align-items: center;
 }
@@ -269,5 +282,5 @@ li::before {
   max-height: 80vh;
   border: 8px solid #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transform: rotate(0deg); /* Straight in popup */
+  transform: rotate(0deg);
 }
