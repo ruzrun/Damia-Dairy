@@ -18,8 +18,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const diaryContent = document.getElementById("diaryContent");
   const logoutBtn = document.getElementById("logoutBtn");
   const backBtn = document.getElementById("backBtn");
+
+  // Search element
   const searchInput = document.getElementById("searchInput");
-  const searchBtn = document.getElementById("searchBtn");
+
+  // Song elements
+  const songSelector = document.getElementById("songSelector");
+  const shuffleBtn = document.getElementById("shuffleBtn");
 
   let diaries = [];
   let fullDiaries = [];
@@ -44,9 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = passwordInput.value.trim();
     if (password === correctPassword) {
       $(loginPage).fadeOut(400, function() {
-        $(listPage).fadeIn(400);
+        $(listPage).fadeIn(400, function() {
+          loadDiaries(); // Load diaries after fade-in; audio plays inside if successful
+        });
       });
-      loadDiaries();
 
       // Display current date with day of the week
       const now = new Date();
@@ -88,7 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
         fullDiaries = data.diaries;
         diaries = [...fullDiaries];
         renderDiaryList();
-        audio.play(); // Play audio after list appears
+        // Randomly select initial song
+        const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
+        if (options.length > 0) {
+          const randomOption = options[Math.floor(Math.random() * options.length)];
+          songSelector.value = randomOption.value;
+          audio.src = randomOption.value;
+          audio.play(); // Play random song after list appears
+        }
       })
       .catch((err) => {
         diaryList.innerHTML = '<li style="color:black;">Sorry.. Tak Dapat Nak Access</li>';
@@ -113,8 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
   searchInput.addEventListener('keyup', () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
     if (searchTerm === '') {
-      diaries = [...fullDiaries];
-      renderDiaryList();
+      renderDiaryList(fullDiaries);
       return;
     }
     const filtered = fullDiaries.filter(entry => 
@@ -124,8 +136,30 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDiaryList(filtered);
   });
 
-  searchBtn.addEventListener('click', () => {
-    searchInput.dispatchEvent(new Event('keyup'));  // Trigger search on button click
+  // Song change listener
+  songSelector.addEventListener('change', () => {
+    if (songSelector.value) {
+      audio.src = songSelector.value;
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  });
+
+  // Shuffle feature
+  shuffleBtn.addEventListener('click', () => {
+    const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
+    if (options.length > 0) {
+      const randomOption = options[Math.floor(Math.random() * options.length)];
+      songSelector.value = randomOption.value;
+      audio.src = randomOption.value;
+      audio.play();
+    }
+  });
+
+  // Optional: Auto-shuffle on song end
+  audio.addEventListener('ended', () => {
+    shuffleBtn.click();
   });
 
   // ✅ View diary details
@@ -153,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
       img.src = entry.image;
       img.alt = 'Polaroid image for diary entry';
       polaroid.appendChild(img);
-      viewPage.appendChild(polaroid);  // Append to #viewPage for fixed positioning outside content
+      viewPage.appendChild(polaroid);
 
       // Click to show popup modal
       polaroid.addEventListener('click', () => {
@@ -163,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // Add modal close logic
+  // Modal close
   const modal = document.getElementById('polaroidModal');
   modal.addEventListener('click', () => {
     modal.style.display = 'none';  // Close on click anywhere
