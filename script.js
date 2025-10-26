@@ -110,26 +110,27 @@ function openDiary(index) {
   diaryContent.textContent = entry.content;
   document.getElementById("diaryDate").textContent = entry.date ? entry.date : '';
 
-  // Clear any existing Polaroid
-  const existingPolaroid = document.querySelector('.polaroid');
-  if (existingPolaroid) {
-    existingPolaroid.remove();
-  }
+  // Clear any existing Polaroids
+  const existingPolaroids = document.querySelectorAll('.polaroid');
+  existingPolaroids.forEach(p => p.remove());
 
-  // Add Polaroid if image exists
-  if (entry.image) {
-    const polaroid = document.createElement('div');
-    polaroid.classList.add('polaroid');
-    const img = document.createElement('img');
-    img.src = entry.image;
-    img.alt = 'Polaroid image for diary entry';
-    polaroid.appendChild(img);
-    viewPage.appendChild(polaroid);  // Append to #viewPage
+  // Add Polaroids if images array exists (up to 2)
+  if (entry.images && entry.images.length > 0) {
+    entry.images.slice(0, 2).forEach((imageUrl, idx) => {  // Limit to 2
+      const polaroid = document.createElement('div');
+      polaroid.classList.add('polaroid');
+      if (idx === 1) polaroid.classList.add('polaroid-second');  // Class for second one positioning
+      const img = document.createElement('img');
+      img.src = imageUrl;
+      img.alt = Polaroid image ${idx + 1} for diary entry;
+      polaroid.appendChild(img);
+      viewPage.appendChild(polaroid);
 
-    // Click to show popup modal
-    polaroid.addEventListener('click', () => {
-      document.getElementById('modalImage').src = entry.image;
-      document.getElementById('polaroidModal').style.display = 'flex';
+      // Click to show popup modal
+      polaroid.addEventListener('click', () => {
+        document.getElementById('modalImage').src = imageUrl;
+        document.getElementById('polaroidModal').style.display = 'flex';
+      });
     });
   }
 }
