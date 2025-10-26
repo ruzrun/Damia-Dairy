@@ -19,9 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const backBtn = document.getElementById("backBtn");
 
-  // Search elements
+  // Search element
   const searchInput = document.getElementById("searchInput");
-  const searchBtn = document.getElementById("searchBtn");
 
   // Song elements
   const songSelector = document.getElementById("songSelector");
@@ -95,10 +94,13 @@ document.addEventListener("DOMContentLoaded", () => {
         fullDiaries = data.diaries;
         diaries = [...fullDiaries];
         renderDiaryList();
-        audio.play(); // Play audio after list appears
-
-        if (songSelector.value === "") {
-          songSelector.value = "audio/audio.mp3";  // Set default song
+        // Randomly select initial song
+        const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
+        if (options.length > 0) {
+          const randomOption = options[Math.floor(Math.random() * options.length)];
+          songSelector.value = randomOption.value;
+          audio.src = randomOption.value;
+          audio.play(); // Play random song after list appears
         }
       })
       .catch((err) => {
@@ -107,14 +109,13 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  // Render diary list (for search)
-  function renderDiaryList(filtered = diaries) {
+  function renderDiaryList(filteredDiaries = diaries) {
     diaryList.innerHTML = "";
-    if (filtered.length === 0) {
+    if (filteredDiaries.length === 0) {
       diaryList.innerHTML = '<li style="color:black;">No results found</li>';
       return;
     }
-    filtered.forEach((entry, index) => {
+    filteredDiaries.forEach((entry, index) => {
       const li = document.createElement("li");
       li.textContent = entry.title;
       li.addEventListener("click", () => openDiary(index));
@@ -122,8 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Search listener (on keyup and button click)
-  const performSearch = () => {
+  searchInput.addEventListener('keyup', () => {
     const searchTerm = searchInput.value.trim().toLowerCase();
     if (searchTerm === '') {
       renderDiaryList(fullDiaries);
@@ -134,10 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
       entry.content.toLowerCase().includes(searchTerm)
     );
     renderDiaryList(filtered);
-  };
-
-  searchInput.addEventListener('keyup', performSearch);
-  searchBtn.addEventListener('click', performSearch);
+  });
 
   // Song change listener
   songSelector.addEventListener('change', () => {
@@ -203,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Modal close
   const modal = document.getElementById('polaroidModal');
   modal.addEventListener('click', () => {
-    modal.style.display = 'none';
+    modal.style.display = 'none';  // Close on click anywhere
   });
 
   // ✅ Back to list
