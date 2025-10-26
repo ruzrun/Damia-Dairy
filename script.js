@@ -19,7 +19,16 @@ document.addEventListener("DOMContentLoaded", () => {
   const logoutBtn = document.getElementById("logoutBtn");
   const backBtn = document.getElementById("backBtn");
 
+  // Search elements
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
+
+  // Song elements
+  const songSelector = document.getElementById("songSelector");
+  const shuffleBtn = document.getElementById("shuffleBtn");
+
   let diaries = [];
+  let fullDiaries = [];
 
   // Prepare audio
   const audio = new Audio("audio/audio.mp3");
@@ -46,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
 
-      // Display current date with day of the week (shows immediately after fade-in starts)
+      // Display current date with day of the week
       const now = new Date();
       const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
       const formattedDate = now.toLocaleDateString('en-US', options); // e.g., "Sunday, 19 Oct 2025"
@@ -83,15 +92,14 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((data) => {
         console.log('Loaded data:', data);  // Logs the JSON if successful
-        diaries = data.diaries;
-        diaryList.innerHTML = "";
-        diaries.forEach((entry, index) => {
-          const li = document.createElement("li");
-          li.textContent = entry.title;
-          li.addEventListener("click", () => openDiary(index));
-          diaryList.appendChild(li);
-        });
-        audio.play(); // Play audio here, after list appears (fetch succeeds and list is populated)
+        fullDiaries = data.diaries;
+        diaries = [...fullDiaries];
+        renderDiaryList();
+        audio.play(); // Play audio after list appears
+
+        if (songSelector.value === "") {
+          songSelector.value = "audio/audio.mp3";  // Set default song
+        }
       })
       .catch((err) => {
         diaryList.innerHTML = '<li style="color:black;">Sorry.. Tak Dapat Nak Access</li>';
@@ -99,48 +107,105 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-// ✅ View diary details
-function openDiary(index) {
-  const entry = diaries[index];
-  if (!entry) return;
-  $(listPage).fadeOut(400, function() {
-    $(viewPage).fadeIn(400);
+  // Render diary list (for search)
+  function renderDiaryList(filtered = diaries) {
+    diaryList.innerHTML = "";
+    if (filtered.length === 0) {
+      diaryList.innerHTML = '<li style="color:black;">No results found</li>';
+      return;
+    }
+    filtered.forEach((entry, index) => {
+      const li = document.createElement("li");
+      li.textContent = entry.title;
+      li.addEventListener("click", () => openDiary(index));
+      diaryList.appendChild(li);
+    });
+  }
+
+  // Search listener (on keyup and button click)
+  const performSearch = () => {
+    const searchTerm = searchInput.value.trim().toLowerCase();
+    if (searchTerm === '') {
+      renderDiaryList(fullDiaries);
+      return;
+    }
+    const filtered = fullDiaries.filter(entry => 
+      entry.title.toLowerCase().includes(searchTerm) || 
+      entry.content.toLowerCase().includes(searchTerm)
+    );
+    renderDiaryList(filtered);
+  };
+
+  searchInput.addEventListener('keyup', performSearch);
+  searchBtn.addEventListener('click', performSearch);
+
+  // Song change listener
+  songSelector.addEventListener('change', () => {
+    if (songSelector.value) {
+      audio.src = songSelector.value;
+      audio.play();
+    } else {
+      audio.pause();
+    }
   });
-  diaryTitle.textContent = entry.title;
-  diaryContent.textContent = entry.content;
-  document.getElementById("diaryDate").textContent = entry.date ? entry.date : '';
 
-  // Clear any existing Polaroids
-  const existingPolaroids = document.querySelectorAll('.polaroid');
-  existingPolaroids.forEach(p => p.remove());
+  // Shuffle feature
+  shuffleBtn.addEventListener('click', () => {
+    const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
+    if (options.length > 0) {
+      const randomOption = options[Math.floor(Math.random() * options.length)];
+      songSelector.value = randomOption.value;
+      audio.src = randomOption.value;
+      audio.play();
+    }
+  });
 
-  // Add Polaroids if images array exists (up to 2)
-  if (entry.images && entry.images.length > 0) {
-    entry.images.slice(0, 2).forEach((imageUrl, idx) => {  // Limit to 2
+  // Optional: Auto-shuffle on song end
+  audio.addEventListener('ended', () => {
+    shuffleBtn.click();
+  });
+
+  // ✅ View diary details
+  function openDiary(index) {
+    const entry = diaries[index];
+    if (!entry) return;
+    $(listPage).fadeOut(400, function() {
+      $(viewPage).fadeIn(400);
+    });
+    diaryTitle.textContent = entry.title;
+    diaryContent.textContent = entry.content;
+    document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
+
+    // Clear any existing Polaroid
+    const existingPolaroid = document.querySelector('.polaroid');
+    if (existingPolaroid) {
+      existingPolaroid.remove();
+    }
+
+    // Add Polaroid if image exists
+    if (entry.image) {
       const polaroid = document.createElement('div');
       polaroid.classList.add('polaroid');
-      if (idx === 1) polaroid.classList.add('polaroid-second');  // Class for second one positioning
       const img = document.createElement('img');
-      img.src = imageUrl;
-      img.alt = Polaroid image ${idx + 1} for diary entry;
+      img.src = entry.image;
+      img.alt = 'Polaroid image for diary entry';
       polaroid.appendChild(img);
       viewPage.appendChild(polaroid);
 
       // Click to show popup modal
       polaroid.addEventListener('click', () => {
-        document.getElementById('modalImage').src = imageUrl;
+        document.getElementById('modalImage').src = entry.image;
         document.getElementById('polaroidModal').style.display = 'flex';
       });
-    });
+    }
   }
-}
 
-// Add modal close logic (outside openDiary, in DOMContentLoaded)
-const modal = document.getElementById('polaroidModal');
-modal.addEventListener('click', () => {
-  modal.style.display = 'none';  // Close on click anywhere
-});
-  
+  // Modal close
+  const modal = document.getElementById('polaroidModal');
+  modal.addEventListener('click', () => {
+    modal.style.display = 'none';
+  });
+
   // ✅ Back to list
   backBtn.addEventListener("click", () => {
     $(viewPage).fadeOut(400, function() {
