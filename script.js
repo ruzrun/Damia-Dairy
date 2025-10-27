@@ -1,228 +1,273 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const correctPassword = "091008";
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
 
-  // Pages
-  const loginPage = document.getElementById("loginPage");
-  const listPage = document.getElementById("listPage");
-  const viewPage = document.getElementById("viewPage");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Georgia", serif;
+}
 
-  // Login elements
-  const passwordInput = document.getElementById("passwordInput");
-  const togglePasswordBtn = document.getElementById("togglePasswordBtn");
-  const loginBtn = document.getElementById("loginBtn");
-  const loginError = document.getElementById("loginError");
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #ff6b6b, #fddb92, #4facfe, #43e97b);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  color: white;
+}
 
-  // Diary elements
-  const diaryList = document.getElementById("diaryList");
-  const diaryTitle = document.getElementById("diaryTitle");
-  const diaryContent = document.getElementById("diaryContent");
-  const logoutBtn = document.getElementById("logoutBtn");
-  const backBtn = document.getElementById("backBtn");
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-  // Search element
-  const searchInput = document.getElementById("searchInput");
+.page {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  width: 90%;
+  max-width: 400px;
+  position: relative; /* For pseudo-elements if needed */
+}
 
-  // Song elements
-  const songSelector = document.getElementById("songSelector");
-  const shuffleBtn = document.getElementById("shuffleBtn");
+.hidden {
+  display: none;
+}
 
-  let diaries = [];
-  let fullDiaries = [];
+input {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  text-align: center;
+}
 
-  // Prepare audio
-  const audio = new Audio("audio/audio.mp3");
-  audio.loop = true; // audio akan repeat
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: white;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
 
-  // Toggle password visibility
-  togglePasswordBtn.addEventListener("click", () => {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      togglePasswordBtn.textContent = "Hide";
-    } else {
-      passwordInput.type = "password";
-      togglePasswordBtn.textContent = "Show";
-    }
-  });
+button:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  color: #000;
+}
 
-  // ✅ Handle login click (works across all devices)
-  const handleLogin = () => {
-    const password = passwordInput.value.trim();
-    if (password === correctPassword) {
-      $(loginPage).fadeOut(400, function() {
-        $(listPage).fadeIn(400, function() {
-          loadDiaries(); // Load diaries after fade-in; audio plays inside if successful
-        });
-      });
 
-      // Display current date with day of the week
-      const now = new Date();
-      const options = { weekday: 'long', day: 'numeric', month: 'short', year: 'numeric' };
-      const formattedDate = now.toLocaleDateString('en-US', options); // e.g., "Sunday, 19 Oct 2025"
-      document.getElementById("currentDate").textContent = formattedDate;
-    } else {
-      loginError.textContent = "Password Salah. Masukkan Tarikh Birthday.";
-    }
-  };
 
-  loginBtn.addEventListener("click", handleLogin);
-  loginBtn.addEventListener("touchstart", handleLogin); // mobile tap fix
+ul {
+  list-style: none;
+  padding: 0;
+  max-height: 300px; /* Scrollable if many entries */
+  overflow-y: auto;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1); /* Subtle notebook background */
+  border-radius: 10px;
+  padding: 10px;
+  background: transparent; /* Lined paper effect */
+  background-size: 100% 1.6em;
+}
 
-  async function logVisit(note) {
-  try {
-    await fetch("https://script.google.com/macros/s/AKfycbwK1nKprehPduuTM1hIaNwIX4tLUywHL-GAJjZL4DAs7KjCHWtl9SKBFnxjxrvhH1_ZJA/exec", {
-      method: "POST",
-      body: JSON.stringify({ message: note }),
-      headers: { "Content-Type": "application/json" },
-      mode: "no-cors" // untuk elak CORS error
-    });
-  } catch (err) {
-    console.error("Log failed:", err);
+li {
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 15px;
+  border-radius: 5px 20px 20px 5px; /* Torn page shape */
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+li:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: translateY(-5px) rotate(2deg); /* Lift and tilt like flipping */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+li::before {
+  content: '📖'; /* Diary icon */
+  margin-right: 10px;
+  font-size: 1.2em;
+}
+
+#diaryTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #fa93c7; /* Pink for romance */
+}
+
+#diaryContent {
+  background: rgba(255, 255, 255, 0.1); /* Parchment-like */
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+  line-height: 1.6;
+  white-space: pre-wrap; /* Preserve line breaks from JSON */
+  animation: reveal 1s ease-out; /* Animation on open */
+  max-height: 300px; /* Adjust this value based on your design; e.g., 300px or 50vh */
+  overflow-y: auto; /* Enables vertical scrolling if content exceeds max-height */
+  position: relative; /* Allows absolute positioning for Polaroid */
+}
+
+.polaroid {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 100px; /* Small size */
+  height: auto;
+  border: 8px solid #fff; /* Polaroid frame */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+  transform: rotate(15deg); /* Tilted for letter-like feel */
+  cursor: pointer;
+  transition: width 0.3s ease, transform 0.3s ease;
+  z-index: 10;
+}
+
+.polaroid.enlarged {
+  width: 300px; /* Larger size */
+  transform: rotate(0deg); /* Straighten when enlarged */
+  bottom: 20px;
+  right: 20px;
+}
+
+.polaroid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
-  // ✅ Load diary list from JSON
-  function loadDiaries() {
-    fetch("diary.json")
-      .then((res) => {
-        console.log('Fetch status:', res.status);  // Logs 200, 404, etc.
-        console.log('Fetch URL:', res.url);  // Shows the full path it's trying
-        if (!res.ok) throw new Error("Failed to load diary.json - Status: " + res.status);
-        return res.json();
-      })
-      .then((data) => {
-        console.log('Loaded data:', data);  // Logs the JSON if successful
-        fullDiaries = data.diaries;
-        diaries = [...fullDiaries];
-        renderDiaryList();
-        // Randomly select initial song
-        const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
-        if (options.length > 0) {
-          const randomOption = options[Math.floor(Math.random() * options.length)];
-          songSelector.value = randomOption.value;
-          audio.src = randomOption.value;
-          audio.play(); // Play random song after list appears
-        }
-      })
-      .catch((err) => {
-        diaryList.innerHTML = '<li style="color:black;">Sorry.. Tak Dapat Nak Access</li>';
-        console.error('Fetch error:', err.message);  // Logs the real error
-      });
-  }
+/* Envelope shape for view page */
+#viewPage::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid rgba(0, 0, 0, 0.3); /* Flap like an envelope */
+  z-index: -1;
+}
 
-  function renderDiaryList(filteredDiaries = diaries) {
-    diaryList.innerHTML = "";
-    if (filteredDiaries.length === 0) {
-      diaryList.innerHTML = '<li style="color:black;">No results found</li>';
-      return;
-    }
-    filteredDiaries.forEach((entry, index) => {
-      const li = document.createElement("li");
-      li.textContent = entry.title;
-      li.addEventListener("click", () => openDiary(index));
-      diaryList.appendChild(li);
-    });
-  }
+#viewPage::after {
+  content: '❤'; /* Heart seal */
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.5em;
+}
 
-  searchInput.addEventListener('keyup', () => {
-    const searchTerm = searchInput.value.trim().toLowerCase();
-    if (searchTerm === '') {
-      renderDiaryList(fullDiaries);
-      return;
-    }
-    const filtered = fullDiaries.filter(entry => 
-      entry.title.toLowerCase().includes(searchTerm) || 
-      entry.content.toLowerCase().includes(searchTerm)
-    );
-    renderDiaryList(filtered);
-  });
+#loginError {
+  color: #ff8080;
+  margin-top: 10px;
+}
 
-  // Song change listener
-  songSelector.addEventListener('change', () => {
-    if (songSelector.value) {
-      audio.src = songSelector.value;
-      audio.play();
-    } else {
-      audio.pause();
-    }
-  });
+.diary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 
-  // Shuffle feature
-  shuffleBtn.addEventListener('click', () => {
-    const options = Array.from(songSelector.options).slice(1); // Exclude "Select"
-    if (options.length > 0) {
-      const randomOption = options[Math.floor(Math.random() * options.length)];
-      songSelector.value = randomOption.value;
-      audio.src = randomOption.value;
-      audio.play();
-    }
-  });
+#diaryDate {
+  font-size: 1em;
+  font-style: italic;
+  color: #ffd700; /* Gold for a romantic touch; adjust as needed */
+  white-space: nowrap; /* Prevent wrapping */
+}
 
-  // Optional: Auto-shuffle on song end
-  audio.addEventListener('ended', () => {
-    shuffleBtn.click();
-  });
+#currentDate {
+  font-size: 1em;
+  font-style: italic;
+  color: #ffd700; /* Gold for elegance */
+  margin-bottom: 15px;
+  text-align: center;
+}
 
-  // ✅ View diary details
-  function openDiary(index) {
-    const entry = diaries[index];
-    if (!entry) return;
-    $(listPage).fadeOut(400, function() {
-      $(viewPage).fadeIn(400);
-    });
-    diaryTitle.textContent = entry.title;
-    diaryContent.textContent = entry.content;
-    document.getElementById("diaryDate").textContent = entry.date ? entry.date : ''; // Load date from JSON; empty if missing
+#passwordInput {
+  font-family: "Courier New", monospace; /* Example: Monospace font for a 'code-like' look; change to your preferred font */
+}
 
-    // Clear any existing Polaroid
-    const existingPolaroid = document.querySelector('.polaroid');
-    if (existingPolaroid) {
-      existingPolaroid.remove();
-    }
+#viewPage {
+  position: relative; /* Positioning context */
+}
 
-    // Add Polaroid if image exists
-    if (entry.image) {
-      const polaroid = document.createElement('div');
-      polaroid.classList.add('polaroid');
-      const img = document.createElement('img');
-      img.src = entry.image;
-      img.alt = 'Polaroid image for diary entry';
-      polaroid.appendChild(img);
-      viewPage.appendChild(polaroid);
+/* Small Polaroid (outside corner) */
+.polaroid {
+  position: absolute;
+  bottom: -20px; /* Slightly outside bottom */
+  right: -20px; /* Slightly outside right */
+  width: 100px;
+  height: auto;
+  border: 8px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(15deg);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 20;
+}
 
-      // Click to show popup modal
-      polaroid.addEventListener('click', () => {
-        document.getElementById('modalImage').src = entry.image;
-        document.getElementById('polaroidModal').style.display = 'flex';
-      });
-    }
-  }
+.polaroid img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-  // Modal close
-  const modal = document.getElementById('polaroidModal');
-  modal.addEventListener('click', () => {
-    modal.style.display = 'none';  // Close on click anywhere
-  });
+/* Modal Popup */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8); /* Dark overlay */
+  z-index: 100; /* On top of everything */
+  justify-content: center;
+  align-items: center;
+}
 
-  // ✅ Back to list
-  backBtn.addEventListener("click", () => {
-    $(viewPage).fadeOut(400, function() {
-      $(listPage).fadeIn(400);
-    });
-  });
+.modal-content {
+  position: relative;
+  max-width: 80%;
+  max-height: 80%;
+}
 
- // jika di bukak google sheet detect 
-    logVisit("Opened");
-  
-  // ✅ Logout
-  logoutBtn.addEventListener("click", () => {
-    $(listPage).fadeOut(400, function() {
-      $(viewPage).fadeOut(400, function() {
-        $(loginPage).fadeIn(400);
-      });
-    });
-    passwordInput.value = "";
-    loginError.textContent = "";
-    audio.pause(); // Pause audio on logout
-    audio.currentTime = 0; // Reset audio
-  });
-});
+#modalImage {
+  width: auto;
+  max-width: 100%;
+  max-height: 80vh;
+  border: 8px solid #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transform: rotate(0deg); /* Straight in popup */
+}
