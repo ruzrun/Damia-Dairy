@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const correctPassword = "090417";
+  const correctPassword = "091008";
 
   // Pages
   const loginPage = document.getElementById("loginPage");
@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   async function logVisit(note) {
   try {
-    await fetch("https://script.google.com/macros/s/AKfycbzwXECGGfU05ATMG866E0rJuUL3wZH5WcFGIuGiiJB5NR-yRxgtpc5AqdTS-nRmVuyJ/exec", {
+    await fetch("https://script.google.com/macros/s/AKfycbwK1nKprehPduuTM1hIaNwIX4tLUywHL-GAJjZL4DAs7KjCHWtl9SKBFnxjxrvhH1_ZJA/exec", {
       method: "POST",
       body: JSON.stringify({ message: note }),
       headers: { "Content-Type": "application/json" },
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ Load diary list from JSON
   function loadDiaries() {
-    fetch("letter for tina.json")
+    fetch("diary.json")
       .then((res) => {
         console.log('Fetch status:', res.status);  // Logs 200, 404, etc.
         console.log('Fetch URL:', res.url);  // Shows the full path it's trying
